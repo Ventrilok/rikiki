@@ -81,26 +81,22 @@ const SectionHeader = ({ children }) => {
 }
 
 const MatchCreator = (props) => {
-  const { onCreateMatch} = props
+  const { onCreateMatch, minPlayers, maxPlayers} = props
   const styles = useStyles()
-
-
   const [nbPlayers, setNbPlayer] = useState(2);
-
-
   return (
     <div>
     <SectionHeader>Créer un nouveau match</SectionHeader>
     <Box pb={2} align={"center"}>
       <div className={styles.root}>
         <IconButton
-          className={styles.iconBtn} onClick={() => (nbPlayers - 1 >= 2 ? setNbPlayer(nbPlayers - 1) : 2)}                  >
+          className={styles.iconBtn} onClick={() => (nbPlayers - 1 >= minPlayers ? setNbPlayer(nbPlayers - 1) : 2)}                  >
           <Remove />
         </IconButton>
         <span className={styles.value}>{nbPlayers}</span>
         <IconButton
           className={styles.iconBtn}
-          onClick={() => setNbPlayer(nbPlayers + 1)}
+          onClick={() => (nbPlayers + 1 <= maxPlayers ? setNbPlayer(nbPlayers + 1) : nbPlayers)}
         >
           <Add />
         </IconButton>

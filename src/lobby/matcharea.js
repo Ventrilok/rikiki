@@ -13,7 +13,7 @@ import MatchList from './matchlist'
 
 import LobbyHeader from './lobbyheader'
 
-import Layout, { Root, getHeader, getDrawerSidebar, getSidebarContent, getContent, getStandardScheme} from '@mui-treasury/layout'
+import Layout, { Root, getHeader, getDrawerSidebar, minPlayers, maxPlayers, getSidebarContent, getContent, getStandardScheme} from '@mui-treasury/layout'
 
 const scheme = Layout()
 
@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const MatchArea = ({errorMsg, playerName, matches, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby, onRefreshMatches}) => {
+const MatchArea = ({errorMsg, playerName, matches, minPlayers, maxPlayers, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby, onRefreshMatches}) => {
   const styles = useStyles()
   return (
     <Root theme={theme} scheme={scheme} initialState={{
@@ -66,7 +66,7 @@ const MatchArea = ({errorMsg, playerName, matches, onCreateMatch, onJoinMatch, o
       <DrawerSidebar sidebarId='primarySidebar'>
         <SidebarContent>
           <PlayerPlate playerName={playerName} />
-          <MatchCreator onCreateMatch={onCreateMatch} />
+          <MatchCreator onCreateMatch={onCreateMatch} minPlayers={minPlayers} maxPlayers={maxPlayers} />
           <ExitLobby onExitLobby={onExitLobby} />
           <Typography variant={'body1'} color={'error'}>
             {errorMsg}

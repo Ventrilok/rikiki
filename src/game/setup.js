@@ -53,7 +53,6 @@ function createDeck () {
       })
     )
   )
-
   return deck
 }
 
@@ -66,7 +65,7 @@ export function setup (ctx) {
     playerCanExchange: 0,
     exchangeCardIndex: 0,
     totalRound: Math.floor(deckSize / ctx.numPlayers),
-    currentLevel: 24,
+    currentLevel: 1,
     direction: 'up',
     trump: [],
     playedCards: [],
@@ -74,6 +73,5 @@ export function setup (ctx) {
     players: createPlayers(ctx.numPlayers),
     deck: createDeck()
   }
-
   return Game
 }

@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function EnterLobby ({playerName, onEnter}) {
+export default function EnterLobby ({playerName, playersNames, onEnter}) {
   const classes = useStyles()
   const [name, setName] = useState(playerName)
 
@@ -57,13 +57,26 @@ export default function EnterLobby ({playerName, onEnter}) {
     onEnter(name)
   }
 
+  function getErrorMessage (name, playersNames) {
+    if (!name) {
+      return 'Ton nom ne peut pas être vide'
+    }
+    if (name.length > 10) {
+      return 'Pas plus de 10 caractères stp'
+    }
+    if (playersNames.includes(name)) {
+      return 'Sois plus inspiré, ce nom est déjà pris'
+    }
+    return null
+  };
+
+  const errorMessage = getErrorMessage(name, playersNames)
+  const hasError = !!errorMessage
   return (
     <Root theme={theme} >
       <Grid container component='main' className={classes.root}>
         <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} className={classes.image} >
-      ici
-      </Grid>
+        <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
@@ -75,7 +88,8 @@ export default function EnterLobby ({playerName, onEnter}) {
 
             <Typography variant='body'>
             C'est sans doute un peu plus beau.... mais ça marche pas forcément mieux :p
-          </Typography>
+
+            </Typography>
             <form className={classes.form} noValidate>
               <TextField
                 variant='outlined'
@@ -88,10 +102,14 @@ export default function EnterLobby ({playerName, onEnter}) {
                 autoFocus
                 label={'Entrez votre nom:'}
                 value={name}
+                error={hasError}
+                helperText={errorMessage}
+                onKeyPress={({ key }) => !hasError && key === 'Enter' && handleLogin()}
                 onChange={e => setName(e.target.value)}
 
             />
               <Button
+                disabled={hasError}
                 type='submit'
                 fullWidth
                 variant='contained'

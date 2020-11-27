@@ -14,7 +14,6 @@ export const bid = {
   },
 
   onEnd: (G, ctx) => {
-    console.log('Phase bid end')
     G.nextPlayer = G.nextBidder
     G.nextBidder = (G.nextBidder + 1) % ctx.numPlayers
     G.lastPlayedCards = []

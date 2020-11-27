@@ -91,7 +91,6 @@ const RikikiBoard = (props) => {
   }
 
   function announceBid (bid) {
-    console.log('ici')
     moves.bid(bid)
   }
 

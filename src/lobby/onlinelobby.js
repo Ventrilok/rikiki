@@ -5,6 +5,26 @@ import MatchArea from './matcharea'
 const OnlineLobby = ({errorMsg,phase, playerName, gameComponents, matches,runningMatch, onEnterLobby, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby,onRefreshMatches, onExitMatch}) => {
   const selectedGameName = gameComponents[0].game.name
 
+  const selectAllPlayersNames = () => {
+    const playersNames = [];
+
+    if (!Array.isArray(matches)) {
+      return playersNames;
+    }
+
+    matches.forEach((match) => {
+      match.players.forEach((player) => {
+        if (player.name) {
+          playersNames.push(player.name);
+        }
+      });
+    });
+
+    return playersNames;
+  };
+
+
+
   const handleLoginClick = (name) => {
     onEnterLobby(name)
   }
@@ -45,6 +65,7 @@ const handleExitMatch = () =>
     return (
       <EnterLobby
         playerName={playerName}
+        playersNames={selectAllPlayersNames()}
         onEnter={handleLoginClick}
     />
     )
@@ -53,6 +74,8 @@ const handleExitMatch = () =>
   if (phase === 'list') {
     return (
       <MatchArea
+        minPlayers={gameComponents[0].game.minPlayers}
+        maxPlayers={gameComponents[0].game.maxPlayers}
         errorMsg={errorMsg}
         playerName={playerName}
         matches={matches}
