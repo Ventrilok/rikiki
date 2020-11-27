@@ -86,6 +86,12 @@ const RikikiBoard = (props) => {
   const styles = useStyles()
   const isCurrentPlayer = (playerID === ctx.currentPlayer)
 
+  function exchangeTrump (doExchange) {
+    if (doExchange) {
+      moves.exchangetrump()
+    }
+  }
+
   function announceBid (bid) {
     moves.bid(bid)
   }
@@ -156,7 +162,7 @@ const RikikiBoard = (props) => {
         <SidebarContent>
           <GamePanel direction={G.direction} currentLevel={G.currentLevel} totalRound={G.totalRound} />
           <Box p={'4px 16px 12px'}>
-            {msgGameOver}
+            {ctx.phase}{msgGameOver}
           </Box>
           <PlayerList players={G.players} playerNames={matchData} currentPlayer={ctx.currentPlayer} />
         </SidebarContent>
@@ -171,6 +177,9 @@ const RikikiBoard = (props) => {
           isLastPlayer={G.nbBids + 1 === ctx.numPlayers}
           isCurrentPlayer={isCurrentPlayer}
           lastPlayedCards={G.lastPlayedCards}
+          canExchange={G.canExchange}
+          onExchangeCard={exchangeTrump}
+
           />
       </DrawerSidebar>
 

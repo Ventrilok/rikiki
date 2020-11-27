@@ -43,7 +43,6 @@ const MatchListItem = ({match, playerName, onJoinMatch, onLeaveMatch, onStartMat
   }
 
   function handlePlay (matchID) {
-    // console.log(matchID, `${findPlayerSeat(match.players, playerName).id}`, match.players.length)
     onStartMatch(matchID, `${findPlayerSeat(match.players, playerName).id}`, match.players.length)
   }
   function handleLeave (matchID) {

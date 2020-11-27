@@ -67,7 +67,14 @@ const useStyles = makeStyles(({ palette }) => ({
   },
   value: {
     padding: '0px 8px'
-  }
+  },
+  btn: {
+    borderRadius: 20,
+    padding: '0.125rem 0.75rem',
+    borderColor: '#becddc',
+    fontSize: '0.75rem',
+    marginRight: 5
+  }  
 }))
 
 const SectionHeader = ({ children }) => {
@@ -86,7 +93,7 @@ const SectionHeader = ({ children }) => {
 }
 
 const BoardSideBar = (props) => {
-  const { trump, players, currentLevel,isLastPlayer, phase, isCurrentPlayer,lastPlayedCards} = props
+  const { trump, players, currentLevel,isLastPlayer, phase, canExchange, isCurrentPlayer,lastPlayedCards, onExchangeCard} = props
   const styles = useStyles()
 
 
@@ -169,6 +176,25 @@ function LastPlayedCard()
   )
 }
 
+function ExchangeTrump()
+{
+  return(
+    <>
+    <SectionHeader opened>Echanger l'atout?</SectionHeader>
+    <Box pb={2} align={'center'}>
+    <Button className={styles.btn} variant={'outlined'} onClick={() => { onExchangeCard(true) }}>
+    Oui
+    </Button>
+    <Button className={styles.btn} variant={'outlined'} onClick={() => { onExchangeCard(false)}}>
+    Non
+    </Button>    
+    </Box>
+    <Divider />    
+    </>
+  )
+}
+
+
   return (
     <div>        
       <Box p={'14px 14px 16px 14px'} textAlign={'center'}>
@@ -178,12 +204,10 @@ function LastPlayedCard()
         <PlayingCard card={trump} height={160}/>
       </Box>
       <Divider />
+      {phase ==='draw' && canExchange  && <ExchangeTrump/>}
       {phase ==='bid'  && isCurrentPlayer && <Bidder/>}
       {phase ==='playcard'  && <LastPlayedCard/>
     }
-                
-
-
     </div>
   )
 }
