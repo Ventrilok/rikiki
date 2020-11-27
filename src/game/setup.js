@@ -66,7 +66,7 @@ export function setup (ctx) {
     playerCanExchange: 0,
     exchangeCardIndex: 0,
     totalRound: Math.floor(deckSize / ctx.numPlayers),
-    currentLevel: 26,
+    currentLevel: 24,
     direction: 'up',
     trump: [],
     playedCards: [],

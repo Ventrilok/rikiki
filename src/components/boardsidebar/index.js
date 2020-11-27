@@ -93,7 +93,7 @@ const SectionHeader = ({ children }) => {
 }
 
 const BoardSideBar = (props) => {
-  const { trump, players, currentLevel,isLastPlayer, phase, canExchange, isCurrentPlayer,lastPlayedCards, onExchangeCard} = props
+  const { trump, players, playerID, playerCanExchange, currentLevel,isLastPlayer, phase, canExchange, isCurrentPlayer,lastPlayedCards, onExchangeCard} = props
   const styles = useStyles()
 
 
@@ -135,8 +135,16 @@ const BoardSideBar = (props) => {
     else if (bid+2<=currentLevel){
         setBid(bid+2)
     }
-
   }
+
+  function validateBid()
+  {
+    if (!Array.isArray(bid))
+      props.onBid(bid)
+  }
+
+ 
+  
  function Bidder(){
    return(
      <>
@@ -153,7 +161,7 @@ const BoardSideBar = (props) => {
          <>
          &nbsp;
          </>
-         <IconButton className={styles.iconBtn} color="primary" onClick={() => props.onBid(bid)}>
+         <IconButton className={styles.iconBtn} disabled={Array.isArray(bid)} color="primary" onClick={() => validateBid()}>
            <CheckIcon />
          </IconButton>
        </div>
@@ -204,7 +212,7 @@ function ExchangeTrump()
         <PlayingCard card={trump} height={160}/>
       </Box>
       <Divider />
-      {phase ==='draw' && canExchange  && <ExchangeTrump/>}
+      {phase ==='draw' && canExchange && playerID.toString() === playerCanExchange.toString() && <ExchangeTrump/>}
       {phase ==='bid'  && isCurrentPlayer && <Bidder/>}
       {phase ==='playcard'  && <LastPlayedCard/>
     }

@@ -14,7 +14,7 @@ function MyLobby (props) {
       // lobbyServer='http://2d3fb389ed5f.ngrok.io'
       gameServer='http://192.168.1.23:2468'
       lobbyServer='http://192.168.1.23:2468'
-      debug={false}
+      debug
       gameComponents={[
         {
           game: Rikiki,

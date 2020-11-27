@@ -18,7 +18,7 @@ const LobbyHeader = () => {
   return (
     <>    
     <Typography variant={'h5'} className={styles.title}>
-      <b>RiQiQi</b>
+      <b>Rikiki</b>
     </Typography>
     </>  
   )

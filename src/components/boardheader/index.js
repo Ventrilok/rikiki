@@ -22,7 +22,7 @@ const BoardHeader = ({onExitMatch}) => {
   return (
     <>    
     <Typography variant={'h5'} className={styles.title}>
-      <b>RiQiQi</b>
+      <b>Rikiki</b>
     </Typography>
     <IconButton color='primary' onClick={() => { onExitMatch() }}>
       <ExitToApp />

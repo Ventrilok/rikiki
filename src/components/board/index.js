@@ -87,12 +87,11 @@ const RikikiBoard = (props) => {
   const isCurrentPlayer = (playerID === ctx.currentPlayer)
 
   function exchangeTrump (doExchange) {
-    if (doExchange) {
-      moves.exchangetrump()
-    }
+    moves.exchangetrump(doExchange)
   }
 
   function announceBid (bid) {
+    console.log('ici')
     moves.bid(bid)
   }
 
@@ -162,7 +161,8 @@ const RikikiBoard = (props) => {
         <SidebarContent>
           <GamePanel direction={G.direction} currentLevel={G.currentLevel} totalRound={G.totalRound} />
           <Box p={'4px 16px 12px'}>
-            {ctx.phase}{msgGameOver}
+            {ctx.phase}{msgGameOver} <br />
+            {G.canExchange ? matchData[G.playerCanExchange].name + ' peut échanger son 2 d\'atout' : ''}
           </Box>
           <PlayerList players={G.players} playerNames={matchData} currentPlayer={ctx.currentPlayer} />
         </SidebarContent>
@@ -177,8 +177,10 @@ const RikikiBoard = (props) => {
           isLastPlayer={G.nbBids + 1 === ctx.numPlayers}
           isCurrentPlayer={isCurrentPlayer}
           lastPlayedCards={G.lastPlayedCards}
+          playerCanExchange={G.playerCanExchange}
           canExchange={G.canExchange}
           onExchangeCard={exchangeTrump}
+          playerID={playerID}
 
           />
       </DrawerSidebar>

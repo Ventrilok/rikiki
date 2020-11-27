@@ -1,5 +1,6 @@
 import { deckSize } from '../../utils/constants'
 import {sortHand} from '../../utils/utils'
+import _ from 'underscore'
 
 export const draw = (G, ctx) => {
   // Calculate where we stand
@@ -47,14 +48,6 @@ export const draw = (G, ctx) => {
     G.players[i].playedcard = []
 
     sortHand(G.players[i].hand)
-
-    // G.players[i].hand.sort((a, b) => {
-    //   const suitOrder = ['c', 'd', 's', 'h']
-    //   const asuitIndex = suitOrder.indexOf(a.suit)
-    //   const bsuitIndex = suitOrder.indexOf(b.suit)
-    //   if (asuitIndex === bsuitIndex) return a.value - b.value
-    //   return asuitIndex - bsuitIndex
-    // })
   }
 
   // Identify if card can be exchange with trump (only the 2 of trump can be exchange)
@@ -64,7 +57,11 @@ export const draw = (G, ctx) => {
       G.canExchange = true
       G.playerCanExchange = i
       G.exchangeCardIndex = cardIndex
-      ctx.events.setStage('exchangeTrump')
+      ctx.events.setActivePlayers({
+        value: {
+          [i]: 'exchangeTrump'
+        },
+        moveLimit: 1 })
     }
   }
 

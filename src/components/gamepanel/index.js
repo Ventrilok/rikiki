@@ -45,7 +45,12 @@ const useStyles = makeStyles(({ palette }) => ({
     fontWeight: 'bold',
     marginBottom: 4,
     textAlign: 'center',
-    letterSpacing: '1px'
+    letterSpacing: '1px',
+    color: '#038C65'
+  },
+  totalRound: {
+    fontSize: 16,
+    color: palette.grey[500]
   }
 }))
 
@@ -75,11 +80,7 @@ const GamePanel = (props) => {
         </Box>
         <Box p={2} flex={'auto'} className={borderedGridStyles.item}>
           <p className={styles.statLabel}>Manche</p>
-          <p className={styles.statValue}>{currentLevel}</p>
-        </Box>
-        <Box p={2} flex={'auto'} className={borderedGridStyles.item}>
-          <p className={styles.statLabel}>Total</p>
-          <p className={styles.statValue}>{totalRound}</p>
+          <p className={styles.statValue}>{currentLevel}<span className={styles.totalRound}>/{totalRound}</span></p>
         </Box>
       </Box>
       <Divider />
