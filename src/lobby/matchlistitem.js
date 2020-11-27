@@ -37,7 +37,7 @@ const useMatchStyles = makeStyles(() => ({
   }
 }))
 
-const MatchListItem = ({match, playerName, onJoinMatch, onLeaveMatch, onStartMatch }) => {
+const MatchListItem = ({ match, playerName, onJoinMatch, onLeaveMatch, onStartMatch }) => {
   function handleJoin (matchID) {
     onJoinMatch(matchID, findFreeSeat(match.players).id)
   }
@@ -69,25 +69,25 @@ const MatchListItem = ({match, playerName, onJoinMatch, onLeaveMatch, onStartMat
                 <Chip label={aPlayer.name || '...'} icon={<FaceIcon />} />
               &nbsp;
               </span>
-          ))}
+            ))}
 
           </div>
         </Item>
-        <Item position={'middle'}>
+        <Item position='middle'>
           {freeSeat && !playerSeat && !alreadyJoined && (
-            <Button className={styles.btn} variant={'outlined'} onClick={() => { handleJoin(match.matchID) }}>
-            Rejoindre
-          </Button>)}
+            <Button className={styles.btn} variant='outlined' onClick={() => { handleJoin(match.matchID) }}>
+              Rejoindre
+            </Button>)}
 
           {!freeSeat && playerSeat && (
-            <Button className={styles.btn} variant={'outlined'} onClick={() => { handlePlay(match.matchID) }}>
-            Jouer
-          </Button>
+            <Button className={styles.btn} variant='outlined' onClick={() => { handlePlay(match.matchID) }}>
+              Jouer
+            </Button>
           )}
           {playerSeat && (
-            <Button className={styles.btn} variant={'outlined'} onClick={() => { handleLeave(match.matchID) }}>
-            Quitter
-          </Button>)}
+            <Button className={styles.btn} variant='outlined' onClick={() => { handleLeave(match.matchID) }}>
+              Quitter
+            </Button>)}
         </Item>
       </Row>
     </Row>

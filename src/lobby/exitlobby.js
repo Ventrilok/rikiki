@@ -30,10 +30,10 @@ const SectionHeader = ({ children }) => {
   const styles = useStyles()
   return (
     <Box
-      p={'14px'}
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
+      p='14px'
+      display='flex'
+      justifyContent='space-between'
+      alignItems='center'
       className={styles.sectionHeader}
     >
       <Typography className={styles.settingHead}>{children}</Typography>
@@ -41,22 +41,22 @@ const SectionHeader = ({ children }) => {
   )
 }
 
-const ExitLobby = ({onExitLobby}) => {
+const ExitLobby = ({ onExitLobby }) => {
   const styles = useStyles()
 
   return (
     <div>
-      <SectionHeader >Options</SectionHeader>
+      <SectionHeader>Options</SectionHeader>
       <Box pb={2}>
         <Box
-          height={'44px'}
-          pl={'14px'}
-          pr={'12px'}
-          display={'flex'}
-          justifyContent={'space-between'}
-          alignItems={'center'}
-            >
-          <Typography variant={'body2'}>Quitter le jeux</Typography>
+          height='44px'
+          pl='14px'
+          pr='12px'
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
+        >
+          <Typography variant='body2'>Quitter le jeux</Typography>
           <IconButton color='primary' onClick={() => { onExitLobby() }}>
             <ExitToApp />
           </IconButton>

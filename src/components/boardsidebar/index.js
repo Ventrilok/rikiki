@@ -1,8 +1,6 @@
-import React , { useState } from 'react'
-import cx from 'clsx'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
-import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
@@ -12,7 +10,6 @@ import Remove from '@material-ui/icons/Remove'
 import CheckIcon from '@material-ui/icons/Check'
 import PlayingCard from '../playingcard'
 import Hand from '../hand'
-
 
 const useStyles = makeStyles(({ palette }) => ({
   title: {
@@ -74,17 +71,17 @@ const useStyles = makeStyles(({ palette }) => ({
     borderColor: '#becddc',
     fontSize: '0.75rem',
     marginRight: 5
-  }  
+  }
 }))
 
 const SectionHeader = ({ children }) => {
   const styles = useStyles()
   return (
     <Box
-      p={'14px'}
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
+      p='14px'
+      display='flex'
+      justifyContent='space-between'
+      alignItems='center'
       className={styles.sectionHeader}
     >
       <Typography className={styles.settingHead}>{children}</Typography>
@@ -93,9 +90,8 @@ const SectionHeader = ({ children }) => {
 }
 
 const BoardSideBar = (props) => {
-  const { trump, players, playerID, playerCanExchange, currentLevel,isLastPlayer, phase, canExchange, isCurrentPlayer,lastPlayedCards, onExchangeCard} = props
+  const { trump, players, playerID, playerCanExchange, currentLevel, isLastPlayer, phase, canExchange, isCurrentPlayer, lastPlayedCards, onExchangeCard } = props
   const styles = useStyles()
-
 
   let totalBid = 0
   for (let i = 0; i < players.length; i++) {
@@ -103,119 +99,101 @@ const BoardSideBar = (props) => {
   }
 
   const forbbidenBid = currentLevel - totalBid
-  const possibleBids = Array.from(Array(currentLevel+1).keys())
+  const possibleBids = Array.from(Array(currentLevel + 1).keys())
 
-  if(isLastPlayer)
-  {
-    let removed = possibleBids.splice(forbbidenBid, 1)
+  if (isLastPlayer) {
+    const removed = possibleBids.splice(forbbidenBid, 1)
   }
 
-  const [bid, setBid] = useState([]);
+  const [bid, setBid] = useState([])
 
-
-  function decreaseBid(){
-    if (bid.length === 0)
-    {
-      setBid((forbbidenBid !=0) ? 0 :1)
-    }
-    else if (possibleBids.includes(bid-1))
-        setBid(bid-1)
-    else if (bid-2>=0){
-        setBid(bid-2)
+  function decreaseBid () {
+    if (bid.length === 0) {
+      setBid((forbbidenBid != 0) ? 0 : 1)
+    } else if (possibleBids.includes(bid - 1)) { setBid(bid - 1) } else if (bid - 2 >= 0) {
+      setBid(bid - 2)
     }
   }
 
-  function increaseBid(){
-    if (bid.length === 0)
-    {
-      setBid((forbbidenBid !=0) ? 0 :1)
-    }
-    else if (possibleBids.includes(bid+1))
-        setBid(bid+1)
-    else if (bid+2<=currentLevel){
-        setBid(bid+2)
+  function increaseBid () {
+    if (bid.length === 0) {
+      setBid((forbbidenBid != 0) ? 0 : 1)
+    } else if (possibleBids.includes(bid + 1)) { setBid(bid + 1) } else if (bid + 2 <= currentLevel) {
+      setBid(bid + 2)
     }
   }
 
-  function validateBid()
-  {
-    if (!Array.isArray(bid))
-      props.onBid(bid)
+  function validateBid () {
+    if (!Array.isArray(bid)) { props.onBid(bid) }
   }
 
- 
-  
- function Bidder(){
-   return(
-     <>
-     <SectionHeader opened>Enchères</SectionHeader>
-     <Box pb={2} align={'center'}>
-       <div className={styles.root}>
-         <IconButton className={styles.iconBtn} onClick={() => decreaseBid()} >
-           <Remove />
-         </IconButton>
-         <span className={styles.value}>{bid}</span>
-         <IconButton className={styles.iconBtn} onClick={() => increaseBid()}>
-           <Add />
-         </IconButton>
-         <>
+  function Bidder () {
+    return (
+      <>
+        <SectionHeader opened>Enchères</SectionHeader>
+        <Box pb={2} align='center'>
+          <div className={styles.root}>
+            <IconButton className={styles.iconBtn} onClick={() => decreaseBid()}>
+              <Remove />
+            </IconButton>
+            <span className={styles.value}>{bid}</span>
+            <IconButton className={styles.iconBtn} onClick={() => increaseBid()}>
+              <Add />
+            </IconButton>
+            <>
          &nbsp;
-         </>
-         <IconButton className={styles.iconBtn} disabled={Array.isArray(bid)} color="primary" onClick={() => validateBid()}>
-           <CheckIcon />
-         </IconButton>
-       </div>
-     </Box>
-     <Divider />
-     </>
-   )
- }
+            </>
+            <IconButton className={styles.iconBtn} disabled={Array.isArray(bid)} color='primary' onClick={() => validateBid()}>
+              <CheckIcon />
+            </IconButton>
+          </div>
+        </Box>
+        <Divider />
+      </>
+    )
+  }
 
-function LastPlayedCard()
-{
-  return(
-    <>
-    <SectionHeader opened>Dernière Pli</SectionHeader>
-    <Box pb={2} align={'center'}>
-      <Hand cards={lastPlayedCards} cardSize={50} layout={'stack'} />
-    </Box>
-    <Divider />    
-    </>
-  )
-}
+  function LastPlayedCard () {
+    return (
+      <>
+        <SectionHeader opened>Dernière Pli</SectionHeader>
+        <Box pb={2} align='center'>
+          <Hand cards={lastPlayedCards} cardSize={50} layout='stack' />
+        </Box>
+        <Divider />
+      </>
+    )
+  }
 
-function ExchangeTrump()
-{
-  return(
-    <>
-    <SectionHeader opened>Echanger l'atout?</SectionHeader>
-    <Box pb={2} align={'center'}>
-    <Button className={styles.btn} variant={'outlined'} onClick={() => { onExchangeCard(true) }}>
-    Oui
-    </Button>
-    <Button className={styles.btn} variant={'outlined'} onClick={() => { onExchangeCard(false)}}>
-    Non
-    </Button>    
-    </Box>
-    <Divider />    
-    </>
-  )
-}
-
+  function ExchangeTrump () {
+    return (
+      <>
+        <SectionHeader opened>Echanger l'atout?</SectionHeader>
+        <Box pb={2} align='center'>
+          <Button className={styles.btn} variant='outlined' onClick={() => { onExchangeCard(true) }}>
+            Oui
+          </Button>
+          <Button className={styles.btn} variant='outlined' onClick={() => { onExchangeCard(false) }}>
+            Non
+          </Button>
+        </Box>
+        <Divider />
+      </>
+    )
+  }
 
   return (
-    <div>        
-      <Box p={'14px 14px 16px 14px'} textAlign={'center'}>
-        <Typography className={styles.title} variant={'h1'} align={'center'}>
+    <div>
+      <Box p='14px 14px 16px 14px' textAlign='center'>
+        <Typography className={styles.title} variant='h1' align='center'>
           Atout
         </Typography>
-        <PlayingCard card={trump} height={160}/>
+        <PlayingCard card={trump} height={160} />
       </Box>
       <Divider />
-      {phase ==='draw' && canExchange && playerID.toString() === playerCanExchange.toString() && <ExchangeTrump/>}
-      {phase ==='bid'  && isCurrentPlayer && <Bidder/>}
-      {phase ==='playcard'  && <LastPlayedCard/>
-    }
+      {phase === 'draw' && canExchange && playerID.toString() === playerCanExchange.toString() && <ExchangeTrump />}
+      {phase === 'bid' && isCurrentPlayer && <Bidder />}
+      {phase === 'playcard' && <LastPlayedCard />}
     </div>
   )
 }

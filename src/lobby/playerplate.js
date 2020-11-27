@@ -18,12 +18,12 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const PlayerPlate = ({playerName}) => {
+const PlayerPlate = ({ playerName }) => {
   const styles = useStyles()
   return (
-    <Box py={'10px'} px={2} display={'flex'} alignItems={'center'}>
-      <Typography variant={'h5'} className={styles.middle}>
-      Hello {playerName}
+    <Box py='10px' px={2} display='flex' alignItems='center'>
+      <Typography variant='h5' className={styles.middle}>
+        Hello {playerName}
       </Typography>
     </Box>
   )

@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Box from '@material-ui/core/Box'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles} from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import theme from '../theme/theme.js'
 import MatchCreator from './matchcreator'
 import ExitLobby from './exitlobby'
@@ -13,7 +13,7 @@ import MatchList from './matchlist'
 
 import LobbyHeader from './lobbyheader'
 
-import Layout, { Root, getHeader, getDrawerSidebar, minPlayers, maxPlayers, getSidebarContent, getContent, getStandardScheme} from '@mui-treasury/layout'
+import Layout, { Root, getHeader, getDrawerSidebar, minPlayers, maxPlayers, getSidebarContent, getContent, getStandardScheme } from '@mui-treasury/layout'
 
 const scheme = Layout()
 
@@ -48,18 +48,20 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const MatchArea = ({errorMsg, playerName, matches, minPlayers, maxPlayers, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby, onRefreshMatches}) => {
+const MatchArea = ({ errorMsg, playerName, matches, minPlayers, maxPlayers, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby, onRefreshMatches }) => {
   const styles = useStyles()
   return (
-    <Root theme={theme} scheme={scheme} initialState={{
-      sidebar: {
-        primarySidebar: { collapsed: false },
-        secondarySidebar: { open: true }
-      }
-    }}>
+    <Root
+      theme={theme} scheme={scheme} initialState={{
+        sidebar: {
+          primarySidebar: { collapsed: false },
+          secondarySidebar: { open: true }
+        }
+      }}
+    >
       <CssBaseline />
       <Header className={styles.header}>
-        <Toolbar >
+        <Toolbar>
           <LobbyHeader />
         </Toolbar>
       </Header>
@@ -68,7 +70,7 @@ const MatchArea = ({errorMsg, playerName, matches, minPlayers, maxPlayers, onCre
           <PlayerPlate playerName={playerName} />
           <MatchCreator onCreateMatch={onCreateMatch} minPlayers={minPlayers} maxPlayers={maxPlayers} />
           <ExitLobby onExitLobby={onExitLobby} />
-          <Typography variant={'body1'} color={'error'}>
+          <Typography variant='body1' color='error'>
             {errorMsg}
           </Typography>
         </SidebarContent>

@@ -2,28 +2,26 @@ import React from 'react'
 import EnterLobby from './enterlobby'
 import MatchArea from './matcharea'
 
-const OnlineLobby = ({errorMsg,phase, playerName, gameComponents, matches,runningMatch, onEnterLobby, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby,onRefreshMatches, onExitMatch}) => {
+const OnlineLobby = ({ errorMsg, phase, playerName, gameComponents, matches, runningMatch, onEnterLobby, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby, onRefreshMatches, onExitMatch }) => {
   const selectedGameName = gameComponents[0].game.name
 
   const selectAllPlayersNames = () => {
-    const playersNames = [];
+    const playersNames = []
 
     if (!Array.isArray(matches)) {
-      return playersNames;
+      return playersNames
     }
 
     matches.forEach((match) => {
       match.players.forEach((player) => {
         if (player.name) {
-          playersNames.push(player.name);
+          playersNames.push(player.name)
         }
-      });
-    });
+      })
+    })
 
-    return playersNames;
-  };
-
-
+    return playersNames
+  }
 
   const handleLoginClick = (name) => {
     onEnterLobby(name)
@@ -45,14 +43,13 @@ const OnlineLobby = ({errorMsg,phase, playerName, gameComponents, matches,runnin
     onExitLobby()
   }
 
-  const handleRefreshMatches =() => {
+  const handleRefreshMatches = () => {
     onRefreshMatches()
   }
 
-const handleExitMatch = () => 
-{
-  onExitMatch()
-}
+  const handleExitMatch = () => {
+    onExitMatch()
+  }
   const handleStartMatch = (matchID, playerID, numPlayers) => {
     onStartMatch(selectedGameName, {
       matchID: matchID,
@@ -67,7 +64,7 @@ const handleExitMatch = () =>
         playerName={playerName}
         playersNames={selectAllPlayersNames()}
         onEnter={handleLoginClick}
-    />
+      />
     )
   }
 
@@ -101,11 +98,10 @@ const handleExitMatch = () =>
           />
         )}
       </>
-    );
+    )
   }
 
-  return 'Phase is unknown...';
-  
+  return 'Phase is unknown...'
 }
 
 export default OnlineLobby

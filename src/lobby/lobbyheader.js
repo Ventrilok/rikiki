@@ -16,11 +16,11 @@ const useStyles = makeStyles(() => ({
 const LobbyHeader = () => {
   const styles = useStyles()
   return (
-    <>    
-    <Typography variant={'h5'} className={styles.title}>
-      <b>Rikiki</b>
-    </Typography>
-    </>  
+    <>
+      <Typography variant='h5' className={styles.title}>
+        <b>Rikiki</b>
+      </Typography>
+    </>
   )
 }
 

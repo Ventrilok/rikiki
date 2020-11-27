@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../utils/cards.css'
 
-const PlayingCard = ({card, height, onClick }) => {
+const PlayingCard = ({ card, height, onClick }) => {
   const cardSVG =
     card.length !== 0 ? './cards/' + card.key + '.svg' : './cards/RED_BACK.svg'
 
@@ -12,7 +12,7 @@ const PlayingCard = ({card, height, onClick }) => {
       alt={cardSVG}
       src={cardSVG}
       onClick={onClick}
-      />
+    />
 
   )
 }

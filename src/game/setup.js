@@ -22,7 +22,7 @@ function createPlayers (num) {
 }
 
 const createCard = (suit, point, value) => ({
-  key: (point + suit).toUpperCase(),
+  key: (point + suit),
   suit,
   point,
   value

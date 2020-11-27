@@ -1,5 +1,5 @@
 import { deckSize } from '../../utils/constants'
-import {sortHand} from '../../utils/utils'
+import { sortHand } from '../../utils/utils'
 import _ from 'underscore'
 
 export const draw = (G, ctx) => {
@@ -37,7 +37,7 @@ export const draw = (G, ctx) => {
   }
   G.trump = trump
 
- // reset nbBids as nobody bidded
+  // reset nbBids as nobody bidded
   G.nbBids = 0
 
   // Initiate player's settings
@@ -52,7 +52,7 @@ export const draw = (G, ctx) => {
 
   // Identify if card can be exchange with trump (only the 2 of trump can be exchange)
   for (let i = 0; i < ctx.numPlayers; i++) {
-    let cardIndex = _.findIndex(G.players[i].hand, {key: '2' + G.trump.suit.toUpperCase()})
+    const cardIndex = _.findIndex(G.players[i].hand, { key: '2' + G.trump.suit })
     if (cardIndex > -1) {
       G.canExchange = true
       G.playerCanExchange = i
@@ -61,7 +61,8 @@ export const draw = (G, ctx) => {
         value: {
           [i]: 'exchangeTrump'
         },
-        moveLimit: 1 })
+        moveLimit: 1
+      })
     }
   }
 

@@ -1,10 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import ExitToApp from '@material-ui/icons/ExitToApp'
-
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -17,17 +15,17 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const BoardHeader = ({onExitMatch}) => {
+const BoardHeader = ({ onExitMatch }) => {
   const styles = useStyles()
   return (
-    <>    
-    <Typography variant={'h5'} className={styles.title}>
-      <b>Rikiki</b>
-    </Typography>
-    <IconButton color='primary' onClick={() => { onExitMatch() }}>
-      <ExitToApp />
-    </IconButton>
-    </>  
+    <>
+      <Typography variant='h5' className={styles.title}>
+        <b>Rikiki</b>
+      </Typography>
+      <IconButton color='primary' onClick={() => { onExitMatch() }}>
+        <ExitToApp />
+      </IconButton>
+    </>
   )
 }
 

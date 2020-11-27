@@ -55,7 +55,7 @@ const useStyles = makeStyles(({ palette }) => ({
 }))
 
 const GamePanel = (props) => {
-  const {direction, currentLevel, totalRound} = props
+  const { direction, currentLevel, totalRound } = props
   const styles = useStyles()
   const borderedGridStyles = useGutterBorderedGridStyles({
     borderColor: 'rgba(0, 0, 0, 0.08)',
@@ -70,15 +70,15 @@ const GamePanel = (props) => {
   )
 
   return (
-    <Box py={'10px'} px={2} alignItems={'center'}>
+    <Box py='10px' px={2} alignItems='center'>
       <Divider />
       <Box />
-      <Box display={'flex'}>
-        <Box p={2} flex={'auto'} className={borderedGridStyles.item}>
+      <Box display='flex'>
+        <Box p={2} flex='auto' className={borderedGridStyles.item}>
           <p className={styles.statLabel}>Direction</p>
           <Avatar className={styles.avatar}>{direction === 'up' ? directionUpIcon : directionDownIcon}</Avatar>
         </Box>
-        <Box p={2} flex={'auto'} className={borderedGridStyles.item}>
+        <Box p={2} flex='auto' className={borderedGridStyles.item}>
           <p className={styles.statLabel}>Manche</p>
           <p className={styles.statValue}>{currentLevel}<span className={styles.totalRound}>/{totalRound}</span></p>
         </Box>

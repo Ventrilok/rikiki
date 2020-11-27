@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import theme from '../theme/theme'
 
-import { Root} from '@mui-treasury/layout'
+import { Root } from '@mui-treasury/layout'
 
 import bkgdImg from '../images/amanda-jones-P787-xixGio-unsplash.jpg'
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function EnterLobby ({playerName, playersNames, onEnter}) {
+export default function EnterLobby ({ playerName, playersNames, onEnter }) {
   const classes = useStyles()
   const [name, setName] = useState(playerName)
 
@@ -73,7 +73,7 @@ export default function EnterLobby ({playerName, playersNames, onEnter}) {
   const errorMessage = getErrorMessage(name, playersNames)
   const hasError = !!errorMessage
   return (
-    <Root theme={theme} >
+    <Root theme={theme}>
       <Grid container component='main' className={classes.root}>
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -83,11 +83,11 @@ export default function EnterLobby ({playerName, playersNames, onEnter}) {
               <ImportExportIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
-            Bienvenu sur Rikiki v2.0
-          </Typography>
+              Bienvenu sur Rikiki v2.0
+            </Typography>
 
             <Typography variant='body'>
-            C'est sans doute un peu plus beau.... mais ça marche pas forcément mieux :p
+              C'est sans doute un peu plus beau.... mais ça marche pas forcément mieux :p
 
             </Typography>
             <form className={classes.form} noValidate>
@@ -100,14 +100,13 @@ export default function EnterLobby ({playerName, playersNames, onEnter}) {
                 name='playerName'
                 autoComplete='playerName'
                 autoFocus
-                label={'Entrez votre nom:'}
+                label='Entrez votre nom:'
                 value={name}
                 error={hasError}
                 helperText={errorMessage}
                 onKeyPress={({ key }) => !hasError && key === 'Enter' && handleLogin()}
                 onChange={e => setName(e.target.value)}
-
-            />
+              />
               <Button
                 disabled={hasError}
                 type='submit'
@@ -116,9 +115,9 @@ export default function EnterLobby ({playerName, playersNames, onEnter}) {
                 color='primary'
                 className={classes.submit}
                 onClick={handleLogin}
-            >
-              Entrer !
-            </Button>
+              >
+                Entrer !
+              </Button>
             </form>
           </div>
         </Grid>

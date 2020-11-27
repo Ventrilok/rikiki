@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {useTransition, animated} from 'react-spring'
+import React, { useState, useEffect } from 'react'
+import { useTransition, animated } from 'react-spring'
 import Box from '@material-ui/core/Box'
 
 const CentralDeck = ({ playedCards, lastPlayedCards }) => {
@@ -32,15 +32,16 @@ const CentralDeck = ({ playedCards, lastPlayedCards }) => {
         {transitions.map(({ item, props, key }) =>
           <animated.div
             key={key}
-            style={props}>
+            style={props}
+          >
             <img
               key={item.point + '' + item.suit}
               alt=''
               className='card'
               src={`./cards/${item.point}${item.suit}.svg`}
-          />
+            />
           </animated.div>
-  )}
+        )}
       </div>
     </Box>
   )

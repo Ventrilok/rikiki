@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import cx from 'clsx'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import RefreshIcon from '@material-ui/icons/Refresh';
+import RefreshIcon from '@material-ui/icons/Refresh'
 import { makeStyles } from '@material-ui/core/styles'
 import { Column, Row, Item } from '@mui-treasury/components/flex'
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic'
@@ -30,26 +30,26 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const MatchList = ({matches, playerName,onJoinMatch, onLeaveMatch, onStartMatch,onRefreshMatches}) => {
+const MatchList = ({ matches, playerName, onJoinMatch, onLeaveMatch, onStartMatch, onRefreshMatches }) => {
   const styles = useStyles()
-    
+
   return (
     <>
       <Column p={0} gap={0} className={styles.card}>
-        <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
+        <Row wrap p={2} alignItems='baseline' className={styles.header}>
           <Item stretched className={styles.headline}>Liste des matches</Item>
           <Item className={styles.actions}>
-            <IconButton   className={styles.iconBtn} onClick={()=>{onRefreshMatches()}} >
+            <IconButton className={styles.iconBtn} onClick={() => { onRefreshMatches() }}>
               <RefreshIcon />
-            </IconButton>            
+            </IconButton>
           </Item>
         </Row>
-          {matches.map((match, index) => (
-            <>
-            <MatchListItem match={match} playerName={playerName} onJoinMatch={onJoinMatch} onLeaveMatch={onLeaveMatch}  onStartMatch={onStartMatch} key={match.MatchID}/>
-            <Divider variant={'middle'} className={styles.divider}/>
-            </>
-              ))}
+        {matches.map((match, index) => (
+          <>
+            <MatchListItem match={match} playerName={playerName} onJoinMatch={onJoinMatch} onLeaveMatch={onLeaveMatch} onStartMatch={onStartMatch} key={match.MatchID} />
+            <Divider variant='middle' className={styles.divider} />
+          </>
+        ))}
       </Column>
     </>
   )

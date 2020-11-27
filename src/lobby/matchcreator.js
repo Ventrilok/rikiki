@@ -1,4 +1,4 @@
-import React , { useState } from 'react'
+import React, { useState } from 'react'
 import cx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Add from '@material-ui/icons/Add'
 import Remove from '@material-ui/icons/Remove'
 import CheckIcon from '@material-ui/icons/Check'
-import ExitToApp from '@material-ui/icons/ExitToApp';
+import ExitToApp from '@material-ui/icons/ExitToApp'
 
 const useStyles = makeStyles(({ palette }) => ({
   title: {
@@ -69,10 +69,10 @@ const SectionHeader = ({ children }) => {
   const styles = useStyles()
   return (
     <Box
-      p={'14px'}
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
+      p='14px'
+      display='flex'
+      justifyContent='space-between'
+      alignItems='center'
       className={styles.sectionHeader}
     >
       <Typography className={styles.settingHead}>{children}</Typography>
@@ -81,36 +81,37 @@ const SectionHeader = ({ children }) => {
 }
 
 const MatchCreator = (props) => {
-  const { onCreateMatch, minPlayers, maxPlayers} = props
+  const { onCreateMatch, minPlayers, maxPlayers } = props
   const styles = useStyles()
-  const [nbPlayers, setNbPlayer] = useState(2);
+  const [nbPlayers, setNbPlayer] = useState(2)
   return (
     <div>
-    <SectionHeader>Créer un nouveau match</SectionHeader>
-    <Box pb={2} align={"center"}>
-      <div className={styles.root}>
-        <IconButton
-          className={styles.iconBtn} onClick={() => (nbPlayers - 1 >= minPlayers ? setNbPlayer(nbPlayers - 1) : 2)}                  >
-          <Remove />
-        </IconButton>
-        <span className={styles.value}>{nbPlayers}</span>
-        <IconButton
-          className={styles.iconBtn}
-          onClick={() => (nbPlayers + 1 <= maxPlayers ? setNbPlayer(nbPlayers + 1) : nbPlayers)}
-        >
-          <Add />
-        </IconButton>
-        <>&nbsp;</>
-        <IconButton
-          className={styles.iconBtn}
-          color="primary"
-          onClick={() => onCreateMatch(nbPlayers)}
-        >
-          <CheckIcon />
-        </IconButton>
-      </div>
-    </Box>
-    <Divider />
+      <SectionHeader>Créer un nouveau match</SectionHeader>
+      <Box pb={2} align='center'>
+        <div className={styles.root}>
+          <IconButton
+            className={styles.iconBtn} onClick={() => (nbPlayers - 1 >= minPlayers ? setNbPlayer(nbPlayers - 1) : 2)}
+          >
+            <Remove />
+          </IconButton>
+          <span className={styles.value}>{nbPlayers}</span>
+          <IconButton
+            className={styles.iconBtn}
+            onClick={() => (nbPlayers + 1 <= maxPlayers ? setNbPlayer(nbPlayers + 1) : nbPlayers)}
+          >
+            <Add />
+          </IconButton>
+          <>&nbsp;</>
+          <IconButton
+            className={styles.iconBtn}
+            color='primary'
+            onClick={() => onCreateMatch(nbPlayers)}
+          >
+            <CheckIcon />
+          </IconButton>
+        </div>
+      </Box>
+      <Divider />
     </div>
   )
 }

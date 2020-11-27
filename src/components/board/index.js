@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Edit from '@material-ui/icons/Edit'
+import Alert from '@material-ui/lab/Alert'
 import Hand from '../hand'
 
 import { filter } from 'lodash'
@@ -95,11 +96,11 @@ const RikikiBoard = (props) => {
   }
 
   function playCard (index) {
-    if (G.playedCards.length === 0) {
+    if (G.playedCards.length === 0) { // if there is no card played then, the player can play anything
       moves.playcard(index)
     } else {
-      const playerCard = G.players[ctx.currentPlayer].hand[index]
-      const results = filter(G.players[ctx.currentPlayer].hand, ['suit', G.playedCards[0].suit])
+      const playerCard = G.players[ctx.currentPlayer].hand[index] // Get the intended card to play
+      const results = filter(G.players[ctx.currentPlayer].hand, ['suit', G.playedCards[0].suit]) // Check if player has any card of the suite of the 1st card thrown
       if (results.length > 0 && playerCard.suit == G.playedCards[0].suit) {
         moves.playcard(index)
       } else if (results.length === 0) {
@@ -110,17 +111,19 @@ const RikikiBoard = (props) => {
 
   let msgGameOver = ''
   if (ctx.gameover) {
-    msgGameOver = <h1>Game Over</h1>
+    msgGameOver = <h1>C'est fini !</h1>
   }
 
   const [centralDeck, setCentralDeck] = useState([])
 
   useEffect(() => {
     let timer
-    if (ctx.phase === 'playcard') {
+    if (ctx.phase === 'bid') {
+      setCentralDeck([])
+    } else {
       if (G.playedCards.length === 0) {
         setCentralDeck(G.lastPlayedCards)
-        timer = setTimeout(() => { setCentralDeck([]) }, 2000)
+        timer = setTimeout(() => { setCentralDeck([]) }, 1500)
       } else if (G.playedCards.length > 0) {
         setCentralDeck(G.playedCards)
       } else {
@@ -142,13 +145,15 @@ const RikikiBoard = (props) => {
     leave: { opacity: 0 }
   })
 
+  const canExchangeMsg = <Alert severity='warning' variant='filled'>Merci de patienter le temps que <b>{matchData[G.playerCanExchange].name}</b> se décide ou non à changer son 2 d'atout</Alert>
+
   return (
     <Root theme={theme} scheme={scheme} initialState={{
       sidebar: {
         primarySidebar: { collapsed: false },
         secondarySidebar: { open: true }
       }
-    }}>>
+    }}>
       <CssBaseline />
       <Header className={styles.header}>
         <Toolbar>
@@ -160,8 +165,7 @@ const RikikiBoard = (props) => {
         <SidebarContent>
           <GamePanel direction={G.direction} currentLevel={G.currentLevel} totalRound={G.totalRound} />
           <Box p={'4px 16px 12px'}>
-            {ctx.phase}{msgGameOver} <br />
-            {G.canExchange ? matchData[G.playerCanExchange].name + ' peut échanger son 2 d\'atout' : ''}
+            {msgGameOver} <br />
           </Box>
           <PlayerList players={G.players} playerNames={matchData} currentPlayer={ctx.currentPlayer} />
         </SidebarContent>
@@ -186,6 +190,8 @@ const RikikiBoard = (props) => {
 
       <Content className={styles.body}>
         <Box p={2} bgcolor='#038C65' height='55vh'>
+          {G.canExchange ? canExchangeMsg : ''}
+
           <div className='hand hhand active-hand'>
             {transitions.map(({ item, props, key }) =>
               <animated.img

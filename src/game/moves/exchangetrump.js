@@ -1,4 +1,4 @@
-import {sortHand} from '../../utils/utils'
+import { sortHand } from '../../utils/utils'
 
 export const exchangetrump = (G, ctx, doExchange) => {
   if (doExchange) {
@@ -6,7 +6,7 @@ export const exchangetrump = (G, ctx, doExchange) => {
     G.players[G.playerCanExchange].hand.splice(G.exchangeCardIndex, 1, G.trump)
     G.trump = exchangedCard
 
-  // Sort the hand after exchanging the card
+    // Sort the hand after exchanging the card
     sortHand(G.players[G.playerCanExchange].hand)
   }
   for (let i = 0; i < ctx.numPlayers; i++) {
