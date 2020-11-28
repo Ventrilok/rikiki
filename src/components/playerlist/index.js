@@ -6,9 +6,7 @@ const PlayerList = (props) => {
 
   return players.map((item, index) => (
     <PlayerListItem
-      key={item.name} playerName={
-      (typeof playerNames === 'undefined') ? item.name : playerNames[index].name
-    } active={currentPlayer === index.toString()} {...item}
+      key={item.name} playerName={(typeof playerNames === 'undefined') ? item.name : playerNames[index].name} active={currentPlayer === index.toString()} {...item}
     />
   ))
 }

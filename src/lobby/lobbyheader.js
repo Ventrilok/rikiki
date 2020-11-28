@@ -8,19 +8,16 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '0.8px',
     marginTop: 8,
     marginBottom: 11,
-    flex: 'auto',
-    marginLeft: 5
+    flex: 'auto'
   }
 }))
 
-const LobbyHeader = () => {
+const LobbyHeader = ({ playerName }) => {
   const styles = useStyles()
   return (
-    <>
-      <Typography variant='h5' className={styles.title}>
-        <b>Rikiki</b>
-      </Typography>
-    </>
+    <Typography variant='h5' className={styles.title}>
+      Hello {playerName}
+    </Typography>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Box from '@material-ui/core/Box'
@@ -8,12 +8,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import theme from '../theme/theme.js'
 import MatchCreator from './matchcreator'
 import ExitLobby from './exitlobby'
-import PlayerPlate from './playerplate'
 import MatchList from './matchlist'
 
 import LobbyHeader from './lobbyheader'
 
-import Layout, { Root, getHeader, getDrawerSidebar, minPlayers, maxPlayers, getSidebarContent, getContent, getStandardScheme } from '@mui-treasury/layout'
+import Layout, { Root, getHeader, getDrawerSidebar, getSidebarContent, getContent } from '@mui-treasury/layout'
 
 const scheme = Layout()
 
@@ -62,17 +61,21 @@ const MatchArea = ({ errorMsg, playerName, matches, minPlayers, maxPlayers, onCr
       <CssBaseline />
       <Header className={styles.header}>
         <Toolbar>
-          <LobbyHeader />
+          <LobbyHeader playerName={playerName} />
         </Toolbar>
       </Header>
       <DrawerSidebar sidebarId='primarySidebar'>
         <SidebarContent>
-          <PlayerPlate playerName={playerName} />
           <MatchCreator onCreateMatch={onCreateMatch} minPlayers={minPlayers} maxPlayers={maxPlayers} />
           <ExitLobby onExitLobby={onExitLobby} />
           <Typography variant='body1' color='error'>
             {errorMsg}
           </Typography>
+          <Box pl={0.5}>
+            <Typography variant='caption' align='center'>
+              Rikiki v2.0
+            </Typography>
+          </Box>
         </SidebarContent>
       </DrawerSidebar>
 

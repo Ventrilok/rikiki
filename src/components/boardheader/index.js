@@ -15,12 +15,12 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const BoardHeader = ({ onExitMatch }) => {
+const BoardHeader = ({ playerName, onExitMatch }) => {
   const styles = useStyles()
   return (
     <>
       <Typography variant='h5' className={styles.title}>
-        <b>Rikiki</b>
+        <b>Hello {playerName}</b>
       </Typography>
       <IconButton color='primary' onClick={() => { onExitMatch() }}>
         <ExitToApp />

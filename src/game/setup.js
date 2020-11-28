@@ -36,19 +36,14 @@ function createDeck () {
         switch (points) {
           case 'J':
             return createCard(suit, points, 11)
-            break
           case 'Q':
             return createCard(suit, points, 12)
-            break
           case 'K':
             return createCard(suit, points, 13)
-            break
           case 'A':
             return createCard(suit, points, 14)
-            break
           default:
             return createCard(suit, points, points)
-            break
         }
       })
     )

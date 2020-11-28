@@ -50,6 +50,7 @@ const OnlineLobby = ({ errorMsg, phase, playerName, gameComponents, matches, run
   const handleExitMatch = () => {
     onExitMatch()
   }
+
   const handleStartMatch = (matchID, playerID, numPlayers) => {
     onStartMatch(selectedGameName, {
       matchID: matchID,
@@ -94,7 +95,7 @@ const OnlineLobby = ({ errorMsg, phase, playerName, gameComponents, matches, run
             matchID={runningMatch.matchID}
             playerID={runningMatch.playerID}
             credentials={runningMatch.credentials}
-            onExitMatch={onExitMatch}
+            onExitMatch={handleExitMatch}
           />
         )}
       </>

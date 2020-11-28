@@ -1,15 +1,9 @@
-import React, { useState } from 'react'
-import cx from 'clsx'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
-import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
-import Add from '@material-ui/icons/Add'
-import Remove from '@material-ui/icons/Remove'
-import CheckIcon from '@material-ui/icons/Check'
 import ExitToApp from '@material-ui/icons/ExitToApp'
 
 const useStyles = makeStyles(({ palette }) => ({
@@ -42,8 +36,6 @@ const SectionHeader = ({ children }) => {
 }
 
 const ExitLobby = ({ onExitLobby }) => {
-  const styles = useStyles()
-
   return (
     <div>
       <SectionHeader>Options</SectionHeader>
@@ -56,7 +48,7 @@ const ExitLobby = ({ onExitLobby }) => {
           justifyContent='space-between'
           alignItems='center'
         >
-          <Typography variant='body2'>Quitter le jeux</Typography>
+          <Typography variant='body2'>Quitter le jeu</Typography>
           <IconButton color='primary' onClick={() => { onExitLobby() }}>
             <ExitToApp />
           </IconButton>

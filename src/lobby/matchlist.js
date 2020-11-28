@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import cx from 'clsx'
+import React, { Fragment } from 'react'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import { makeStyles } from '@material-ui/core/styles'
 import { Column, Row, Item } from '@mui-treasury/components/flex'
-import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic'
+
 import MatchListItem from './matchlistitem'
 
 const useStyles = makeStyles(() => ({
@@ -45,10 +44,10 @@ const MatchList = ({ matches, playerName, onJoinMatch, onLeaveMatch, onStartMatc
           </Item>
         </Row>
         {matches.map((match, index) => (
-          <>
+          <Fragment key={index}>
             <MatchListItem match={match} playerName={playerName} onJoinMatch={onJoinMatch} onLeaveMatch={onLeaveMatch} onStartMatch={onStartMatch} key={match.MatchID} />
             <Divider variant='middle' className={styles.divider} />
-          </>
+          </Fragment>
         ))}
       </Column>
     </>

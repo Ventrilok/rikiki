@@ -1,16 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import cx from 'clsx'
-import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
-import Divider from '@material-ui/core/Divider'
-import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
-import { Column, Row, Item } from '@mui-treasury/components/flex'
+import { Row, Item } from '@mui-treasury/components/flex'
 import Chip from '@material-ui/core/Chip'
 import FaceIcon from '@material-ui/icons/Face'
-import { server } from '../utils/constants'
-
-import { LobbyClient } from 'boardgame.io/client'
 
 const useMatchStyles = makeStyles(() => ({
   text: {

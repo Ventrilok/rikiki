@@ -156,7 +156,7 @@ const BoardSideBar = (props) => {
   function LastPlayedCard () {
     return (
       <>
-        <SectionHeader opened>Dernière Pli</SectionHeader>
+        <SectionHeader opened>Dernier Pli</SectionHeader>
         <Box pb={2} align='center'>
           <Hand cards={lastPlayedCards} cardSize={50} layout='stack' />
         </Box>

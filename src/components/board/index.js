@@ -4,34 +4,17 @@ import styled from 'styled-components'
 import Box from '@material-ui/core/Box'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import Edit from '@material-ui/icons/Edit'
 import Alert from '@material-ui/lab/Alert'
 import Hand from '../hand'
-
 import { filter } from 'lodash'
-import {
-  makeStyles,
-  createMuiTheme,
-  responsiveFontSizes
-} from '@material-ui/core/styles'
-import Layout, {
-  Root,
-  getHeader,
-  getContent,
-  getDrawerSidebar,
-  getSidebarContent,
-  getCollapseBtn,
-  getStandardScheme
-} from '@mui-treasury/layout'
-
+import { makeStyles } from '@material-ui/core/styles'
+import Layout, { Root, getHeader, getContent, getDrawerSidebar, getSidebarContent } from '@mui-treasury/layout'
 import theme from '../../theme/theme.js'
 
 import GamePanel from '../gamepanel'
 import PlayerList from '../playerlist'
 import BoardHeader from '../boardheader'
 import BoardSideBar from '../boardsidebar'
-import CentralDeck from '../centraldeck'
 
 const scheme = Layout()
 
@@ -67,7 +50,6 @@ const Content = getContent(styled)
 const DrawerSidebar = getDrawerSidebar(styled)
 const SidebarContent = getSidebarContent(styled)
 
-const msgGameOver = ''
 const useStyles = makeStyles(() => ({
   header: {
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .10)',
@@ -83,7 +65,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const RikikiBoard = (props) => {
-  const {G, ctx, moves, playerID, matchData, onExitMatch} = props
+  const { G, ctx, moves, playerID, matchData, onExitMatch } = props
   const styles = useStyles()
   const isCurrentPlayer = (playerID === ctx.currentPlayer)
 
@@ -145,34 +127,49 @@ const RikikiBoard = (props) => {
     leave: { opacity: 0 }
   })
 
-  const canExchangeMsg = <Alert severity='warning' variant='filled'>Merci de patienter le temps que <b>{matchData[G.playerCanExchange].name}</b> se décide ou non à changer son 2 d'atout</Alert>
+  const canExchangeMsg = <Alert severity='warning' variant='filled'>Merci de patienter le temps qu'un joueur se décide à changer ou non son 2 d'atout</Alert>
+
+  let msgFun = ''
+  let totalBid = 0
+  for (let i = 0; i < ctx.numPlayers; i++) {
+    totalBid += G.players[i].bid
+  }
+  if (totalBid > G.currentLevel) {
+    msgFun = 'Va falloir se battre, enfin si vous lisez encore ce message'
+  } else {
+    msgFun = 'On doit pas se battre '
+  }
 
   return (
-    <Root theme={theme} scheme={scheme} initialState={{
-      sidebar: {
-        primarySidebar: { collapsed: false },
-        secondarySidebar: { open: true }
-      }
-    }}>
+    <Root
+      theme={theme} scheme={scheme} initialState={{
+        sidebar: {
+          primarySidebar: { collapsed: false },
+          secondarySidebar: { open: true }
+        }
+      }}
+    >
       <CssBaseline />
       <Header className={styles.header}>
         <Toolbar>
-          <BoardHeader playerName={G.players[playerID].name} onExitMatch={onExitMatch} />
+          <BoardHeader playerName={matchData[playerID].name} onExitMatch={onExitMatch} />
         </Toolbar>
       </Header>
 
-      <DrawerSidebar sidebarId={'primarySidebar'}>
+      <DrawerSidebar sidebarId='primarySidebar'>
         <SidebarContent>
           <GamePanel direction={G.direction} currentLevel={G.currentLevel} totalRound={G.totalRound} />
-          <Box p={'4px 16px 12px'}>
-            {msgGameOver} <br />
+          <Box p='4px 16px 12px'>
+            {msgGameOver}
+            {ctx.phase === 'playcard' ? msgFun : ''}
           </Box>
           <PlayerList players={G.players} playerNames={matchData} currentPlayer={ctx.currentPlayer} />
         </SidebarContent>
       </DrawerSidebar>
 
-      <DrawerSidebar sidebarId={'secondarySidebar'}>
-        <BoardSideBar trump={G.trump}
+      <DrawerSidebar sidebarId='secondarySidebar'>
+        <BoardSideBar
+          trump={G.trump}
           players={G.players}
           phase={ctx.phase}
           currentLevel={G.currentLevel}
@@ -184,8 +181,7 @@ const RikikiBoard = (props) => {
           canExchange={G.canExchange}
           onExchangeCard={exchangeTrump}
           playerID={playerID}
-
-          />
+        />
       </DrawerSidebar>
 
       <Content className={styles.body}>
@@ -200,11 +196,11 @@ const RikikiBoard = (props) => {
                 alt=''
                 className='card'
                 src={`./cards/${item.point}${item.suit}.svg`}
-        />
-)}
+              />
+            )}
           </div>
         </Box>
-        <Hand cards={G.players[playerID].hand} cardSize={150} layout={'stack'} onPlayCard={playCard} />
+        <Hand cards={G.players[playerID].hand} cardSize={150} layout='stack' onPlayCard={playCard} />
       </Content>
 
     </Root>
