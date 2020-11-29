@@ -13,7 +13,6 @@ img.card {
 .hand {
 	padding: 0;
 	margin: 0;
-
 }
 .active-hand img.card {
 	cursor: pointer;

@@ -158,7 +158,7 @@ const BoardSideBar = (props) => {
       <>
         <SectionHeader opened>Dernier Pli</SectionHeader>
         <Box pb={2} align='center'>
-          <Hand cards={lastPlayedCards} cardSize={50} layout='stack' />
+          <Hand cards={lastPlayedCards} cardWidth={80} spacing={0.25} layout='stack' />
         </Box>
         <Divider />
       </>
@@ -188,7 +188,7 @@ const BoardSideBar = (props) => {
         <Typography className={styles.title} variant='h1' align='center'>
           Atout
         </Typography>
-        <PlayingCard card={trump} height={160} />
+        <PlayingCard card={trump} cardWidth={100} />
       </Box>
       <Divider />
       {phase === 'draw' && canExchange && playerID.toString() === playerCanExchange.toString() && <ExchangeTrump />}

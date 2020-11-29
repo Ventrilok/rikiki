@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useTransition, animated } from 'react-spring'
 import styled from 'styled-components'
 import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Toolbar from '@material-ui/core/Toolbar'
 import Alert from '@material-ui/lab/Alert'
@@ -15,6 +16,7 @@ import GamePanel from '../gamepanel'
 import PlayerList from '../playerlist'
 import BoardHeader from '../boardheader'
 import BoardSideBar from '../boardsidebar'
+import PlayeingCard from '../playingcard'
 
 const scheme = Layout()
 
@@ -59,7 +61,7 @@ const useStyles = makeStyles(() => ({
   body: {
     borderLeft: '1px solid rgba(0, 0, 0, 0.08)',
     overflowY: 'auto',
-    backgroundColor: '#fff'
+    backgroundColor: '#b0b0b0'
   }
 
 }))
@@ -152,7 +154,7 @@ const RikikiBoard = (props) => {
       <CssBaseline />
       <Header className={styles.header}>
         <Toolbar>
-          <BoardHeader playerName={matchData[playerID].name} onExitMatch={onExitMatch} />
+          <BoardHeader playerName={(typeof matchData !== 'undefined') ? matchData[playerID].name : G.players[0].name} onExitMatch={onExitMatch} />
         </Toolbar>
       </Header>
 
@@ -190,6 +192,7 @@ const RikikiBoard = (props) => {
 
           <div className='hand hhand active-hand'>
             {transitions.map(({ item, props, key }) =>
+
               <animated.img
                 key={key}
                 style={props}
@@ -200,7 +203,9 @@ const RikikiBoard = (props) => {
             )}
           </div>
         </Box>
-        <Hand cards={G.players[playerID].hand} cardSize={150} layout='stack' onPlayCard={playCard} />
+        <Container>
+          <Hand cards={G.players[playerID].hand} cardWidth={120} spacing={0.25} active={isCurrentPlayer} onPlayCard={playCard} />
+        </Container>
       </Content>
 
     </Root>
