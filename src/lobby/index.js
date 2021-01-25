@@ -10,11 +10,12 @@ Rikiki.maxPlayers = 10
 function MyLobby (props) {
   return (
     <Lobby
-      gameServer='http://598d2c506b98.ngrok.io'
-      lobbyServer='http://598d2c506b98.ngrok.io'
-      // gameServer='http://192.168.1.23:2468'
-      // lobbyServer='http://192.168.1.23:2468'
+      gameServer=' http://489462128e8d.ngrok.io'
+      lobbyServer=' http://489462128e8d.ngrok.io'
+      // gameServer='http://84.226.191.92:2468'
+      // lobbyServer='http://84.226.191.92:2468'
       debug={false}
+      refreshInterval='15000'
       gameComponents={[
         {
           game: Rikiki,

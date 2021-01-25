@@ -16,7 +16,8 @@ import GamePanel from '../gamepanel'
 import PlayerList from '../playerlist'
 import BoardHeader from '../boardheader'
 import BoardSideBar from '../boardsidebar'
-import PlayeingCard from '../playingcard'
+
+import Chat from '../chat'
 
 const scheme = Layout()
 
@@ -61,13 +62,13 @@ const useStyles = makeStyles(() => ({
   body: {
     borderLeft: '1px solid rgba(0, 0, 0, 0.08)',
     overflowY: 'auto',
-    backgroundColor: '#b0b0b0'
+    backgroundColor: 'rgb(3, 140, 101)'
   }
 
 }))
 
 const RikikiBoard = (props) => {
-  const { G, ctx, moves, playerID, matchData, onExitMatch } = props
+  const { G, ctx, moves, playerID, matchData, onExitMatch, sendChatMessage, chatMessages } = props
   const styles = useStyles()
   const isCurrentPlayer = (playerID === ctx.currentPlayer)
 
@@ -184,6 +185,10 @@ const RikikiBoard = (props) => {
           onExchangeCard={exchangeTrump}
           playerID={playerID}
         />
+        <Chat
+          onSend={sendChatMessage}
+          messages={chatMessages}
+                  />
       </DrawerSidebar>
 
       <Content className={styles.body}>
@@ -192,12 +197,12 @@ const RikikiBoard = (props) => {
 
           <div className='hand hhand active-hand'>
             {transitions.map(({ item, props, key }) =>
-
               <animated.img
                 key={key}
                 style={props}
                 alt=''
                 className='card'
+                width={100}
                 src={`./cards/${item.point}${item.suit}.svg`}
               />
             )}

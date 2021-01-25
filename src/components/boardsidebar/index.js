@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import Add from '@material-ui/icons/Add'
-import Remove from '@material-ui/icons/Remove'
-import CheckIcon from '@material-ui/icons/Check'
 import PlayingCard from '../playingcard'
 import Hand from '../hand'
+
+import Bidder from '../bidder'
 
 const useStyles = makeStyles(({ palette }) => ({
   title: {
@@ -90,68 +88,8 @@ const SectionHeader = ({ children }) => {
 }
 
 const BoardSideBar = (props) => {
-  const { trump, players, playerID, playerCanExchange, currentLevel, isLastPlayer, phase, canExchange, isCurrentPlayer, lastPlayedCards, onExchangeCard } = props
+  const { trump, players, playerID, playerCanExchange, currentLevel, isLastPlayer, phase, canExchange, isCurrentPlayer, lastPlayedCards, onBid, onExchangeCard } = props
   const styles = useStyles()
-
-  let totalBid = 0
-  for (let i = 0; i < players.length; i++) {
-    totalBid += players[i].bid
-  }
-
-  const forbbidenBid = currentLevel - totalBid
-  const possibleBids = Array.from(Array(currentLevel + 1).keys())
-
-  if (isLastPlayer) {
-    const removed = possibleBids.splice(forbbidenBid, 1)
-  }
-
-  const [bid, setBid] = useState([])
-
-  function decreaseBid () {
-    if (bid.length === 0) {
-      setBid((forbbidenBid != 0) ? 0 : 1)
-    } else if (possibleBids.includes(bid - 1)) { setBid(bid - 1) } else if (bid - 2 >= 0) {
-      setBid(bid - 2)
-    }
-  }
-
-  function increaseBid () {
-    if (bid.length === 0) {
-      setBid((forbbidenBid != 0) ? 0 : 1)
-    } else if (possibleBids.includes(bid + 1)) { setBid(bid + 1) } else if (bid + 2 <= currentLevel) {
-      setBid(bid + 2)
-    }
-  }
-
-  function validateBid () {
-    if (!Array.isArray(bid)) { props.onBid(bid) }
-  }
-
-  function Bidder () {
-    return (
-      <>
-        <SectionHeader opened>Enchères</SectionHeader>
-        <Box pb={2} align='center'>
-          <div className={styles.root}>
-            <IconButton className={styles.iconBtn} onClick={() => decreaseBid()}>
-              <Remove />
-            </IconButton>
-            <span className={styles.value}>{bid}</span>
-            <IconButton className={styles.iconBtn} onClick={() => increaseBid()}>
-              <Add />
-            </IconButton>
-            <>
-         &nbsp;
-            </>
-            <IconButton className={styles.iconBtn} disabled={Array.isArray(bid)} color='primary' onClick={() => validateBid()}>
-              <CheckIcon />
-            </IconButton>
-          </div>
-        </Box>
-        <Divider />
-      </>
-    )
-  }
 
   function LastPlayedCard () {
     return (
@@ -192,8 +130,9 @@ const BoardSideBar = (props) => {
       </Box>
       <Divider />
       {phase === 'draw' && canExchange && playerID.toString() === playerCanExchange.toString() && <ExchangeTrump />}
-      {phase === 'bid' && isCurrentPlayer && <Bidder />}
+      {phase === 'bid' && isCurrentPlayer && <><SectionHeader opened>Enchères</SectionHeader><Bidder currentLevel={currentLevel} players={players} isLastPlayer={isLastPlayer} onBid={onBid} /><Divider /></>}
       {phase === 'playcard' && <LastPlayedCard />}
+
     </div>
   )
 }
