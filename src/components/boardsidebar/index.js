@@ -132,7 +132,6 @@ const BoardSideBar = (props) => {
       {phase === 'draw' && canExchange && playerID.toString() === playerCanExchange.toString() && <ExchangeTrump />}
       {phase === 'bid' && isCurrentPlayer && <><SectionHeader opened>Enchères</SectionHeader><Bidder currentLevel={currentLevel} players={players} isLastPlayer={isLastPlayer} onBid={onBid} /><Divider /></>}
       {phase === 'playcard' && <LastPlayedCard />}
-
     </div>
   )
 }

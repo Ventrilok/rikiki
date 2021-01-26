@@ -7,21 +7,18 @@ import OnlineLobby from './onlinelobby'
 Rikiki.minPlayers = 2
 Rikiki.maxPlayers = 10
 
+const { protocol, hostname, port } = window.location
+const server = `${protocol}//${hostname}:${port}`
+const importedGames = [{ game: Rikiki, board: RikikiBoard }]
+
 function MyLobby (props) {
   return (
     <Lobby
-      gameServer=' http://489462128e8d.ngrok.io'
-      lobbyServer=' http://489462128e8d.ngrok.io'
-      // gameServer='http://84.226.191.92:2468'
-      // lobbyServer='http://84.226.191.92:2468'
+      gameServer={server}
+      lobbyServer={server}
       debug={false}
       refreshInterval='15000'
-      gameComponents={[
-        {
-          game: Rikiki,
-          board: RikikiBoard
-        }
-      ]}
+      gameComponents={importedGames}
       renderer={({
         errorMsg,
         gameComponents,
