@@ -17,7 +17,7 @@ const PlayingCard = ({ card, cardWidth, onClick }) => {
     card.length !== 0 ? '../../images/cards/' + card.key + '.svg' : '../../images/cards/RED_BACK.svg'
 
   return (
-
+<>
     <img
       className={styles.card}
       src={cardSVG}
@@ -25,6 +25,7 @@ const PlayingCard = ({ card, cardWidth, onClick }) => {
 
     />
 
+</>
   )
 }
 
