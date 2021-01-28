@@ -79,7 +79,7 @@ const MatchArea = ({ errorMsg, playerName, matches, minPlayers, maxPlayers, onCr
             <Typography variant='caption' align='center'>
               Rikiki v2.1
             </Typography>
-            <img src={images('./2C.svg')} />
+            <img src={images('./2D.svg').default} />
           </Box>
         </SidebarContent>
       </DrawerSidebar>
