@@ -47,10 +47,6 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const images = require.context('../images/', true)
-
-console.log(images('./2C.svg'))
-
 const MatchArea = ({ errorMsg, playerName, matches, minPlayers, maxPlayers, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby, onRefreshMatches }) => {
   const styles = useStyles()
   return (
@@ -79,7 +75,7 @@ const MatchArea = ({ errorMsg, playerName, matches, minPlayers, maxPlayers, onCr
             <Typography variant='caption' align='center'>
               Rikiki v2.1
             </Typography>
-            <img src={images('./2D.svg').default} />
+
           </Box>
         </SidebarContent>
       </DrawerSidebar>
