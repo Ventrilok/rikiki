@@ -14,14 +14,15 @@ const PlayingCard = ({ card, cardWidth, onClick }) => {
   const styles = useStyles({ cardWidth })
 
   const cardSVG =
-    card.length !== 0 ? './cards/' + card.key + '.svg' : './cards/RED_BACK.svg'
+    card.length !== 0 ? '../../images/cards/' + card.key + '.svg' : '../../images/cards/RED_BACK.svg'
 
   return (
+
     <img
       className={styles.card}
-      alt={cardSVG}
       src={cardSVG}
       onClick={onClick}
+
     />
 
   )

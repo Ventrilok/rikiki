@@ -17,7 +17,7 @@ function MyLobby (props) {
       gameServer={server}
       lobbyServer={server}
       debug={false}
-      refreshInterval='15000'
+      refreshInterval='2000'
       gameComponents={importedGames}
       renderer={({
         errorMsg,

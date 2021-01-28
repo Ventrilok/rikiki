@@ -185,10 +185,7 @@ const RikikiBoard = (props) => {
           onExchangeCard={exchangeTrump}
           playerID={playerID}
         />
-        <Chat
-          onSend={sendChatMessage}
-          messages={chatMessages}
-                  />
+
       </DrawerSidebar>
 
       <Content className={styles.body}>
