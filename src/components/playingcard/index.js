@@ -27,9 +27,7 @@ const PlayingCard = ({ card, cardWidth, onClick }) => {
       className={styles.card}
       src={cardSVG}
       onClick={onClick}
-
     />
-
 </>
   )
 }
