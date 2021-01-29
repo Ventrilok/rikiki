@@ -89,8 +89,8 @@ export default function EnterLobby ({ playerName, playersNames, onEnter }) {
             <br />
             <Typography component={'span'} className={classes.quoteTypo}>
               Certaines disent que le verre est à moitié vide, d'autres affirment que le verre est à moitié plein.
-              C'est ton anniversaires, bois simplement ce que tu trouves dans ton verre !
-    <br />                                                                <br />
+              C'est ton anniversaire, bois simplement ce que tu trouves dans ton verre !
+    <br />                                                                          <br />
               Joyeux anniversaire Tom!
 
             </Typography>
