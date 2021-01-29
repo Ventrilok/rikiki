@@ -8,9 +8,12 @@ Rikiki.minPlayers = 2
 Rikiki.maxPlayers = 10
 
 const { protocol, hostname, port } = window.location
-const server = `${protocol}//${hostname}:${port}`
+
+const server = `${protocol}//${hostname}:${port == 3000 ? 8000 : port}`
+
 const importedGames = [{ game: Rikiki, board: RikikiBoard }]
 
+console.log('server', server)
 function MyLobby (props) {
   return (
     <Lobby

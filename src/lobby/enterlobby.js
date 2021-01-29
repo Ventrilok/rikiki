@@ -81,7 +81,7 @@ export default function EnterLobby ({ playerName, playersNames, onEnter }) {
               Bienvenu sur Rikiki v2.0
             </Typography>
 
-            <Typography variant='body'>
+            <Typography variant='body1'>
               C'est sans doute un peu plus beau.... mais ça marche pas forcément mieux :p
 
             </Typography>

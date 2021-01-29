@@ -17,8 +17,6 @@ import PlayerList from '../playerlist'
 import BoardHeader from '../boardheader'
 import BoardSideBar from '../boardsidebar'
 
-import Chat from '../chat'
-
 const scheme = Layout()
 
 scheme.configureHeader(builder => {
@@ -52,6 +50,7 @@ const Header = getHeader(styled)
 const Content = getContent(styled)
 const DrawerSidebar = getDrawerSidebar(styled)
 const SidebarContent = getSidebarContent(styled)
+const images = require.context('../../images/', true)
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -200,7 +199,7 @@ const RikikiBoard = (props) => {
                 alt=''
                 className='card'
                 width={100}
-                src={`./cards/${item.point}${item.suit}.svg`}
+                src={images('./' + item.point + item.suit.toUpperCase() + '.svg').default}
               />
             )}
           </div>
@@ -215,3 +214,5 @@ const RikikiBoard = (props) => {
 }
 
 export default RikikiBoard
+
+// {`./cards/${item.point}${item.suit}.svg`}
