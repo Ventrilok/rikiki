@@ -6,7 +6,6 @@ import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import PlayingCard from '../playingcard'
 import Hand from '../hand'
-
 import Bidder from '../bidder'
 
 const useStyles = makeStyles(({ palette }) => ({
@@ -88,8 +87,10 @@ const SectionHeader = ({ children }) => {
 }
 
 const BoardSideBar = (props) => {
-  const { trump, players, playerID, playerCanExchange, currentLevel, isLastPlayer, phase, canExchange, isCurrentPlayer, lastPlayedCards, onBid, onExchangeCard } = props
+  const { trump, players, playerID, playerCanExchange, currentLevel, isLastPlayer, phase, canExchange, isCurrentPlayer, lastPlayedCards, onBid, onExchangeCard} = props
   const styles = useStyles()
+
+
 
   function LastPlayedCard () {
     return (
@@ -129,6 +130,7 @@ const BoardSideBar = (props) => {
         <PlayingCard card={trump} cardWidth={100} />
       </Box>
       <Divider />
+
       {phase === 'draw' && canExchange && playerID.toString() === playerCanExchange.toString() && <ExchangeTrump />}
       {phase === 'bid' && isCurrentPlayer && <><SectionHeader opened>Enchères</SectionHeader><Bidder currentLevel={currentLevel} players={players} isLastPlayer={isLastPlayer} onBid={onBid} /><Divider /></>}
       {phase === 'playcard' && <LastPlayedCard />}

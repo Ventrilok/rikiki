@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import theme from '../theme/theme'
 import { Root } from '@mui-treasury/layout'
 
-import bkgdImg from '../images/amanda-jones-P787-xixGio-unsplash.jpg'
+import bkgdImg from '../images/angele-kamp-poH6OvcEeXE-unsplash.jpg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  quoteTypo: {
+    fontFamily: 'Caveat',
+    fontSize: '2em',
+    color: theme.palette.secondary.main
   }
 }))
 
@@ -78,13 +83,19 @@ export default function EnterLobby ({ playerName, playersNames, onEnter }) {
               <ImportExportIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
-              Bienvenu sur Rikiki v2.0
+              Bienvenu sur Rikiki v43.0
             </Typography>
-
-            <Typography variant='body1'>
-              C'est sans doute un peu plus beau.... mais ça marche pas forcément mieux :p
+            <br />
+            <br />
+            <Typography component={'span'} className={classes.quoteTypo}>
+              Certaines disent que le verre est à moitié vide, d'autres affirment que le verre est à moitié plein.
+              C'est ton anniversaires, bois simplement ce que tu trouves dans ton verre !
+    <br />                                                                <br />
+              Joyeux anniversaire Tom!
 
             </Typography>
+            <br />
+            <br />
             <form className={classes.form} noValidate>
               <TextField
                 variant='outlined'

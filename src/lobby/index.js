@@ -13,14 +13,13 @@ const server = `${protocol}//${hostname}:${port == 3000 ? 8000 : port}`
 
 const importedGames = [{ game: Rikiki, board: RikikiBoard }]
 
-console.log('server', server)
 function MyLobby (props) {
   return (
     <Lobby
       gameServer={server}
       lobbyServer={server}
       debug={false}
-      refreshInterval={15000}
+      refreshInterval={2500}
       gameComponents={importedGames}
       renderer={({
         errorMsg,

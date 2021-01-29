@@ -214,5 +214,3 @@ const RikikiBoard = (props) => {
 }
 
 export default RikikiBoard
-
-// {`./cards/${item.point}${item.suit}.svg`}
