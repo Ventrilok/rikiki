@@ -55,7 +55,8 @@ const images = require.context('../../images/', true)
 const useStyles = makeStyles(() => ({
   header: {
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .10)',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    zIndex: 10000
 
   },
   body: {
@@ -67,7 +68,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const RikikiBoard = (props) => {
-  const { G, ctx, moves, playerID, matchData, onExitMatch, sendChatMessage, chatMessages } = props
+  const { G, ctx, moves, playerID, matchData, onExitMatch } = props
   const styles = useStyles()
   const isCurrentPlayer = (playerID === ctx.currentPlayer)
 
