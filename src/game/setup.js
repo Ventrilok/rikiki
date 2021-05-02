@@ -1,57 +1,58 @@
-import { deckSize, points, suits } from '../utils/constants'
+import { deckSize, points, suits } from '../utils/constants';
 
 const createPlayer = (idx) => ({
   id: idx,
-  name: 'Player ' + idx,
+  name: `Player ${idx}`,
   ready: false,
+  absoluteZero: false,
+  hold: false,
   bid: null,
   tricks: 0,
   score: 0,
   tally: 0,
   hand: [],
-  playedcard: []
+  playedcard: [],
+});
 
-})
-
-function createPlayers (num) {
-  const players = []
+function createPlayers(num) {
+  const players = [];
   for (let i = 0; i < num; i++) {
-    players[i] = createPlayer(i)
+    players[i] = createPlayer(i);
   }
-  return players
+  return players;
 }
 
 const createCard = (suit, point, value) => ({
-  key: (point + suit),
+  key: point + suit,
   suit,
   point,
-  value
-})
+  value,
+});
 
-function createDeck () {
+function createDeck() {
   const deck = Array.prototype.concat.apply(
     [],
     suits.map((suit) =>
-      points.map((points) => {
-        switch (points) {
+      points.map((point) => {
+        switch (point) {
           case 'J':
-            return createCard(suit, points, 11)
+            return createCard(suit, point, 11);
           case 'Q':
-            return createCard(suit, points, 12)
+            return createCard(suit, point, 12);
           case 'K':
-            return createCard(suit, points, 13)
+            return createCard(suit, point, 13);
           case 'A':
-            return createCard(suit, points, 14)
+            return createCard(suit, point, 14);
           default:
-            return createCard(suit, points, points)
+            return createCard(suit, point, point);
         }
-      })
-    )
-  )
-  return deck
+      }),
+    ),
+  );
+  return deck;
 }
 
-export function setup (ctx) {
+export function setup(ctx) {
   const Game = {
     nbBids: 0,
     nextBidder: 0,
@@ -66,7 +67,7 @@ export function setup (ctx) {
     playedCards: [],
     lastPlayedCards: [],
     players: createPlayers(ctx.numPlayers),
-    deck: createDeck()
-  }
-  return Game
+    deck: createDeck(),
+  };
+  return Game;
 }

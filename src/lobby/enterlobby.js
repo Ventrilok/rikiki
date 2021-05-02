@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
-import ImportExportIcon from '@material-ui/icons/ImportExport'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
-import theme from '../theme/theme'
-import { Root } from '@mui-treasury/layout'
+import React, { useState } from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import ImportExportIcon from '@material-ui/icons/ImportExport';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import { Root } from '@mui-treasury/layout';
+import theme from '../theme/theme';
 
-import bkgdImg from '../images/angele-kamp-poH6OvcEeXE-unsplash.jpg'
+import bkgdImg from '../images/amanda-jones-P787-xixGio-unsplash.jpg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    height: '100vh'
+    height: '100vh',
   },
   image: {
     backgroundImage: `url(${bkgdImg})`,
@@ -23,58 +23,58 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
   },
   paper: {
     margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 0, 2),
   },
   quoteTypo: {
     fontFamily: 'Caveat',
     fontSize: '2em',
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
+  },
+}));
+
+export default function EnterLobby({ playerName, playersNames, onEnter }) {
+  const classes = useStyles();
+  const [name, setName] = useState(playerName);
+
+  function handleLogin() {
+    onEnter(name);
   }
-}))
 
-export default function EnterLobby ({ playerName, playersNames, onEnter }) {
-  const classes = useStyles()
-  const [name, setName] = useState(playerName)
-
-  function handleLogin () {
-    onEnter(name)
-  }
-
-  function getErrorMessage (name, playersNames) {
+  function getErrorMessage() {
     if (!name) {
-      return 'Ton nom ne peut pas être vide'
+      return 'Ton nom ne peut pas être vide';
     }
-    if (name.length > 10) {
-      return 'Pas plus de 10 caractères stp'
+    if (name.length > 15) {
+      return 'Pas plus de 15 caractères stp';
     }
     if (playersNames.includes(name)) {
-      return 'Sois plus inspiré, ce nom est déjà pris'
+      return 'Sois plus inspiré, ce nom est déjà pris';
     }
-    return null
-  };
+    return null;
+  }
 
-  const errorMessage = getErrorMessage(name, playersNames)
-  const hasError = !!errorMessage
+  const errorMessage = getErrorMessage(name, playersNames);
+  const hasError = !!errorMessage;
   return (
     <Root theme={theme}>
-      <Grid container component='main' className={classes.root}>
+      <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -82,43 +82,34 @@ export default function EnterLobby ({ playerName, playersNames, onEnter }) {
             <Avatar className={classes.avatar}>
               <ImportExportIcon />
             </Avatar>
-            <Typography component='h1' variant='h5'>
-              Bienvenu sur Rikiki v43.0
-            </Typography>
-            <br />
-            <br />
-            <Typography component={'span'} className={classes.quoteTypo}>
-              Certaines disent que le verre est à moitié vide, d'autres affirment que le verre est à moitié plein.
-              C'est ton anniversaire, bois simplement ce que tu trouves dans ton verre !
-    <br />                                                                          <br />
-              Joyeux anniversaire Tom!
-
+            <Typography component="h1" variant="h5">
+              Bienvenu sur Rikiki
             </Typography>
             <br />
             <br />
             <form className={classes.form} noValidate>
               <TextField
-                variant='outlined'
-                margin='normal'
+                variant="outlined"
+                margin="normal"
                 required
                 fullWidth
-                id='playerName'
-                name='playerName'
-                autoComplete='playerName'
+                id="playerName"
+                name="playerName"
+                autoComplete="playerName"
                 autoFocus
-                label='Entrez votre nom:'
+                label="Entrez votre nom:"
                 value={name}
                 error={hasError}
                 helperText={errorMessage}
                 onKeyPress={({ key }) => !hasError && key === 'Enter' && handleLogin()}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
               <Button
                 disabled={hasError}
-                type='submit'
+                type="submit"
                 fullWidth
-                variant='contained'
-                color='primary'
+                variant="contained"
+                color="primary"
                 className={classes.submit}
                 onClick={handleLogin}
               >
@@ -129,5 +120,5 @@ export default function EnterLobby ({ playerName, playersNames, onEnter }) {
         </Grid>
       </Grid>
     </Root>
-  )
+  );
 }

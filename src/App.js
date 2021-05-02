@@ -1,8 +1,6 @@
-import React from 'react'
-import MyLobby from './lobby'
+import React from 'react';
+import MyLobby from './lobby';
 
-const App = () => (
-  <MyLobby />
-)
+const App = () => <MyLobby />;
 
-export default App
+export default App;

@@ -1,7 +1,7 @@
-import { setup } from './setup'
-import { moves } from './moves'
-import { exchangetrump } from './moves/exchangetrump'
-import { phases } from './phases'
+import { setup } from './setup';
+import { moves } from './moves';
+import { exchangetrump } from './moves/exchangetrump';
+import { phases } from './phases';
 
 const Rikiki = {
   name: 'Rikiki',
@@ -11,16 +11,16 @@ const Rikiki = {
   turn: {
     stages: {
       exchangeTrump: {
-        moves: { exchangetrump }
-      }
-    }
+        moves: { exchangetrump },
+      },
+    },
   },
 
   endIf: (G) => {
-    if (G.direction === 'down' && G.currentLevel === 0) {
-      return 'end game'
+    if (G.direction === 'down' && parseInt(G.currentLevel, 10) === 1) {
+      return 'end game';
     }
-  }
-}
+  },
+};
 
-export default Rikiki
+export default Rikiki;

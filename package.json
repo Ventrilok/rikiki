@@ -1,49 +1,52 @@
 {
   "name": "rikiki",
-  "version": "0.1.0",
+  "version": "v3.0",
   "description": "Rikik based on boardgame.io",
   "private": true,
   "engines": {
-    "node": "15.5.0"
+    "node": "15.13.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@material-ui/core": "^4.11.3",
+    "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
-    "@material-ui/styles": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@material-ui/styles": "^4.11.4",
     "@mui-treasury/components": "^1.9.2",
     "@mui-treasury/layout": "^4.5.0",
     "@mui-treasury/mockup": "^1.2.10",
     "@mui-treasury/styles": "^1.13.1",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.3",
-    "boardgame.io": "^0.43.2",
-    "concurrently": "^5.3.0",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "boardgame.io": "^0.44.1",
+    "clsx": "^1.1.1",
+    "concurrently": "^6.0.2",
     "esm": "^3.2.25",
     "koa-static": "^5.0.0",
     "lodash": "^4.17.20",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "randomcolor": "^0.6.2",
+    "react": "^17.0.2",
+    "react-confetti": "^6.0.1",
+    "react-dom": "^17.0.2",
     "react-scripts": "4.0.1",
     "react-spring": "^8.0.27",
-    "styled-components": "^5.2.1",
-    "underscore": "^1.12.0"
+    "styled-components": "^5.2.3",
+    "underscore": "^1.13.1"
   },
   "scripts": {
     "start": "node -r esm src/server.js",
-    "dev": "react-scripts start",
+    "predeploy": "npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "heroku-postbuild": "npm run build",
-    "predeploy": "npm run build",
     "eject": "react-scripts eject",
-    "lint": "eslint \"src/**/*.js\"",
-    "client": "react-scripts start",
+    "heroku-postbuild": "npm run build",
     "server": "node -r esm src/server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "client": "react-scripts start",
+    "dev": "HOST=192.168.1.23 concurrently \"npm run server\" \"npm run client\"",
+    "lint": "eslint --fix .",
+    "lint-check": "eslint ."
   },
   "browserslist": {
     "production": [
@@ -58,13 +61,13 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.18.0",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "2.2.1",
-    "standard": "*"
+    "prettier": "2.2.1"
   }
 }

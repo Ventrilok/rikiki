@@ -1,6 +1,6 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -8,17 +8,17 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '0.8px',
     marginTop: 8,
     marginBottom: 11,
-    flex: 'auto'
-  }
-}))
+    flex: 'auto',
+  },
+}));
 
 const LobbyHeader = ({ playerName }) => {
-  const styles = useStyles()
+  const styles = useStyles();
   return (
-    <Typography variant='h5' className={styles.title}>
+    <Typography variant="h5" className={styles.title}>
       Hello {playerName}
     </Typography>
-  )
-}
+  );
+};
 
-export default LobbyHeader
+export default LobbyHeader;

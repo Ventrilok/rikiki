@@ -1,24 +1,23 @@
-import { moves } from '../moves'
-import { isAllPlayerReady } from '../../utils/utils'
+import { moves } from '../moves';
+import { isAllPlayerReady } from '../../utils/utils';
+
 export const playcard = {
   next: 'evalutetrick',
   moves: {
-    playcard: moves.playcard
+    playcard: moves.playcard,
   },
   turn: {
     order: {
-      first: (G, ctx) => parseInt(G.nextPlayer),
-      next: (G, ctx) => (ctx.playOrderPos + 1) % ctx.numPlayers
-    }
+      first: (G) => parseInt(G.nextPlayer, 10),
+      next: (G, ctx) => (ctx.playOrderPos + 1) % ctx.numPlayers,
+    },
   },
-  onBegin: (G, ctx) => {
-    return G
-  },
+  onBegin: (G) => G,
   onEnd: (G, ctx) => {
     for (let i = 0; i < ctx.numPlayers; i++) {
-      G.players[i].ready = false
+      G.players[i].ready = false;
     }
-    return G
+    return G;
   },
-  endIf: (G, ctx) => isAllPlayerReady(G.players)
-}
+  endIf: (G) => isAllPlayerReady(G.players),
+};

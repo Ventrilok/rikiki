@@ -1,63 +1,78 @@
-import React from 'react'
-import EnterLobby from './enterlobby'
-import MatchArea from './matcharea'
+import React from 'react';
+import EnterLobby from './enterlobby';
+import MatchArea from './matcharea';
 
-const OnlineLobby = ({ errorMsg, phase, playerName, gameComponents, matches, runningMatch, onEnterLobby, onCreateMatch, onJoinMatch, onLeaveMatch, onStartMatch, onExitLobby, onRefreshMatches, onExitMatch }) => {
-  const selectedGameName = gameComponents[0].game.name
+const OnlineLobby = ({
+  errorMsg,
+  phase,
+  playerName,
+  gameComponents,
+  matches,
+  runningMatch,
+  onEnterLobby,
+  onCreateMatch,
+  onJoinMatch,
+  onLeaveMatch,
+  onStartMatch,
+  onExitLobby,
+  onRefreshMatches,
+  onExitMatch,
+}) => {
+  const selectedGameName = gameComponents[0].game.name;
 
   const selectAllPlayersNames = () => {
-    const playersNames = []
+    const playersNames = [];
 
     if (!Array.isArray(matches)) {
-      return playersNames
+      return playersNames;
     }
 
     matches.forEach((match) => {
       match.players.forEach((player) => {
         if (player.name) {
-          playersNames.push(player.name)
+          playersNames.push(player.name);
         }
-      })
-    })
+      });
+    });
 
-    return playersNames
-  }
+    return playersNames;
+  };
 
   const handleLoginClick = (name) => {
-    onEnterLobby(name)
-  }
+    onEnterLobby(name);
+  };
 
   const handleCreateMatch = (nbPlayers) => {
-    onCreateMatch(selectedGameName, nbPlayers)
-  }
+    onCreateMatch(selectedGameName, nbPlayers);
+  };
 
   const handleJoinMatch = (matchID, playerID) => {
-    onJoinMatch(selectedGameName, matchID, playerID.toString())
-  }
+    onJoinMatch(selectedGameName, matchID, playerID.toString());
+  };
 
   const handleLeaveMatch = (matchID) => {
-    onLeaveMatch(selectedGameName, matchID)
-  }
+    onLeaveMatch(selectedGameName, matchID);
+  };
 
   const handleExitLobby = () => {
-    onExitLobby()
-  }
+    onExitLobby();
+  };
 
   const handleRefreshMatches = () => {
-    onRefreshMatches()
-  }
+    onRefreshMatches();
+  };
 
   const handleExitMatch = () => {
-    onExitMatch()
-  }
+    onExitMatch();
+  };
 
   const handleStartMatch = (matchID, playerID, numPlayers) => {
     onStartMatch(selectedGameName, {
-      matchID: matchID,
-      playerID: playerID,
-      numPlayers
-    })
-  }
+      matchID,
+      playerID,
+      numPlayers,
+    });
+  };
 
   if (phase === 'enter') {
     return (
@@ -66,7 +81,7 @@ const OnlineLobby = ({ errorMsg, phase, playerName, gameComponents, matches, run
         playersNames={selectAllPlayersNames()}
         onEnter={handleLoginClick}
       />
-    )
+    );
   }
 
   if (phase === 'list') {
@@ -84,7 +99,7 @@ const OnlineLobby = ({ errorMsg, phase, playerName, gameComponents, matches, run
         onExitLobby={handleExitLobby}
         onRefreshMatches={handleRefreshMatches}
       />
-    )
+    );
   }
 
   if (phase === 'play') {
@@ -99,10 +114,10 @@ const OnlineLobby = ({ errorMsg, phase, playerName, gameComponents, matches, run
           />
         )}
       </>
-    )
+    );
   }
 
-  return 'Phase is unknown...'
-}
+  return 'Phase is unknown...';
+};
 
-export default OnlineLobby
+export default OnlineLobby;

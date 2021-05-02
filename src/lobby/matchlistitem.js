@@ -1,57 +1,57 @@
-import React from 'react'
-import cx from 'clsx'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
-import { Row, Item } from '@mui-treasury/components/flex'
-import Chip from '@material-ui/core/Chip'
-import FaceIcon from '@material-ui/icons/Face'
+import React from 'react';
+import cx from 'clsx';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { Row, Item } from '@mui-treasury/components/flex';
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
 
 const useMatchStyles = makeStyles(() => ({
   text: {
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   name: {
     fontWeight: 600,
     fontSize: '1rem',
-    color: '#122740'
+    color: '#122740',
   },
   caption: {
     fontSize: '0.875rem',
     color: '#758392',
-    marginTop: -4
+    marginTop: -4,
   },
   btn: {
     borderRadius: 20,
     padding: '0.125rem 0.75rem',
     borderColor: '#becddc',
     fontSize: '0.75rem',
-    marginRight: 5
-  }
-}))
+    marginRight: 5,
+  },
+}));
 
 const MatchListItem = ({ match, playerName, onJoinMatch, onLeaveMatch, onStartMatch }) => {
-  function handleJoin (matchID) {
-    onJoinMatch(matchID, findFreeSeat(match.players).id)
+  function handleJoin(matchID) {
+    onJoinMatch(matchID, findFreeSeat(match.players).id);
   }
 
-  function handlePlay (matchID) {
-    onStartMatch(matchID, `${findPlayerSeat(match.players, playerName).id}`, match.players.length)
+  function handlePlay(matchID) {
+    onStartMatch(matchID, `${findPlayerSeat(match.players, playerName).id}`, match.players.length);
   }
-  function handleLeave (matchID) {
-    onLeaveMatch(matchID)
+  function handleLeave(matchID) {
+    onLeaveMatch(matchID);
   }
 
-  const findFreeSeat = (players) => players.find((player) => !player.name)
-  const freeSeat = findFreeSeat(match.players) // position of the free seat in the given match
+  const findFreeSeat = (players) => players.find((player) => !player.name);
+  const freeSeat = findFreeSeat(match.players); // position of the free seat in the given match
 
-  const findPlayerSeat = (players, playerName) => players.find((player) => player.name === playerName)
-  const playerSeat = findPlayerSeat(match.players, playerName)
+  const findPlayerSeat = (players) => players.find((player) => player.name === playerName);
+  const playerSeat = findPlayerSeat(match.players, playerName);
 
-  const alreadyJoined = false
+  const alreadyJoined = false;
 
-  const styles = useMatchStyles()
+  const styles = useMatchStyles();
   return (
     <Row gap={2} p={2.5}>
       <Row wrap grow gap={0.5} minWidth={0}>
@@ -59,33 +59,52 @@ const MatchListItem = ({ match, playerName, onJoinMatch, onLeaveMatch, onStartMa
           <div className={cx(styles.name, styles.text)}>{match.matchID}</div>
           <div>
             {match.players.map((aPlayer, index) => (
-              <span key={match.matchID + '-player-' + index}>
+              <span key={`${match.matchID}-player-${index}`}>
                 <Chip label={aPlayer.name || '...'} icon={<FaceIcon />} />
-              &nbsp;
+                &nbsp;
               </span>
             ))}
-
           </div>
         </Item>
-        <Item position='middle'>
+        <Item position="middle">
           {freeSeat && !playerSeat && !alreadyJoined && (
-            <Button className={styles.btn} variant='outlined' onClick={() => { handleJoin(match.matchID) }}>
+            <Button
+              className={styles.btn}
+              variant="outlined"
+              onClick={() => {
+                handleJoin(match.matchID);
+              }}
+            >
               Rejoindre
-            </Button>)}
+            </Button>
+          )}
 
           {!freeSeat && playerSeat && (
-            <Button className={styles.btn} variant='outlined' onClick={() => { handlePlay(match.matchID) }}>
+            <Button
+              className={styles.btn}
+              variant="outlined"
+              onClick={() => {
+                handlePlay(match.matchID);
+              }}
+            >
               Jouer
             </Button>
           )}
           {playerSeat && (
-            <Button className={styles.btn} variant='outlined' onClick={() => { handleLeave(match.matchID) }}>
+            <Button
+              className={styles.btn}
+              variant="outlined"
+              onClick={() => {
+                handleLeave(match.matchID);
+              }}
+            >
               Quitter
-            </Button>)}
+            </Button>
+          )}
         </Item>
       </Row>
     </Row>
-  )
-}
+  );
+};
 
-export default MatchListItem
+export default MatchListItem;

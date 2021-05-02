@@ -1,19 +1,19 @@
-import React from 'react'
-import { Lobby } from 'boardgame.io/react'
-import Rikiki from '../game/game'
-import RikikiBoard from '../components/board'
-import OnlineLobby from './onlinelobby'
+import React from 'react';
+import { Lobby } from 'boardgame.io/react';
+import Rikiki from '../game/game';
+import RikikiBoard from '../components/board';
+import OnlineLobby from './onlinelobby';
 
-Rikiki.minPlayers = 2
-Rikiki.maxPlayers = 10
+Rikiki.minPlayers = 2;
+Rikiki.maxPlayers = 10;
 
-const { protocol, hostname, port } = window.location
+const { protocol, hostname, port } = window.location;
 
-const server = `${protocol}//${hostname}:${port == 3000 ? 8000 : port}`
+const server = `${protocol}//${hostname}:${port == 3000 ? 8000 : port}`;
 
-const importedGames = [{ game: Rikiki, board: RikikiBoard }]
+const importedGames = [{ game: Rikiki, board: RikikiBoard }];
 
-function MyLobby (props) {
+function MyLobby() {
   return (
     <Lobby
       gameServer={server}
@@ -35,7 +35,7 @@ function MyLobby (props) {
         handleExitLobby,
         handleRefreshMatches,
         handleStartMatch,
-        handleExitMatch
+        handleExitMatch,
       }) => (
         <OnlineLobby
           errorMsg={errorMsg}
@@ -55,7 +55,7 @@ function MyLobby (props) {
         />
       )}
     />
-  )
+  );
 }
 
-export default MyLobby
+export default MyLobby;

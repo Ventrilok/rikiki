@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
-import Add from '@material-ui/icons/Add'
-import Remove from '@material-ui/icons/Remove'
-import CheckIcon from '@material-ui/icons/Check'
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import Add from '@material-ui/icons/Add';
+import Remove from '@material-ui/icons/Remove';
+import CheckIcon from '@material-ui/icons/Check';
 
 const useStyles = makeStyles(({ palette }) => ({
   title: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles(({ palette }) => ({
     marginTop: 8,
     marginBottom: 11,
     flex: 'auto',
-    marginLeft: 5
+    marginLeft: 5,
   },
   settingHead: {
     textTransform: 'uppercase',
@@ -24,22 +24,22 @@ const useStyles = makeStyles(({ palette }) => ({
     fontSize: 13,
     '& + *': {
       color: 'rgba(0,0,0,0.34)',
-      fontSize: 28
-    }
+      fontSize: 28,
+    },
   },
   settingLabel: {
-    fontSize: 13
+    fontSize: 13,
   },
   settingIcon: {
     padding: 6,
     borderRadius: '50%',
     backgroundColor: 'rgba(0,0,0,0.04)',
     width: 32,
-    height: 32
+    height: 32,
   },
   blue: {
     color: 'rgb(0, 153, 255)',
-    background: 'none'
+    background: 'none',
   },
 
   root: {
@@ -48,45 +48,46 @@ const useStyles = makeStyles(({ palette }) => ({
     padding: 4,
     borderRadius: 40,
     border: '1px solid',
-    borderColor: palette.grey[300]
+    borderColor: palette.grey[300],
   },
   iconBtn: {
     padding: 8,
     '& svg': {
-      fontSize: 16
-    }
+      fontSize: 16,
+    },
   },
   value: {
-    padding: '0px 8px'
-  }
-}))
+    padding: '0px 8px',
+  },
+}));
 
 const SectionHeader = ({ children }) => {
-  const styles = useStyles()
+  const styles = useStyles();
   return (
     <Box
-      p='14px'
-      display='flex'
-      justifyContent='space-between'
-      alignItems='center'
+      p="14px"
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
       className={styles.sectionHeader}
     >
       <Typography className={styles.settingHead}>{children}</Typography>
     </Box>
-  )
-}
+  );
+};
 
 const MatchCreator = (props) => {
-  const { onCreateMatch, minPlayers, maxPlayers } = props
-  const styles = useStyles()
-  const [nbPlayers, setNbPlayer] = useState(2)
+  const { onCreateMatch, minPlayers, maxPlayers } = props;
+  const styles = useStyles();
+  const [nbPlayers, setNbPlayer] = useState(2);
   return (
     <div>
       <SectionHeader>Créer un nouveau match</SectionHeader>
-      <Box pb={2} align='center'>
+      <Box pb={2} align="center">
         <div className={styles.root}>
           <IconButton
-            className={styles.iconBtn} onClick={() => (nbPlayers - 1 >= minPlayers ? setNbPlayer(nbPlayers - 1) : 2)}
+            className={styles.iconBtn}
+            onClick={() => (nbPlayers - 1 >= minPlayers ? setNbPlayer(nbPlayers - 1) : 2)}
           >
             <Remove />
           </IconButton>
@@ -100,7 +101,7 @@ const MatchCreator = (props) => {
           <>&nbsp;</>
           <IconButton
             className={styles.iconBtn}
-            color='primary'
+            color="primary"
             onClick={() => onCreateMatch(nbPlayers)}
           >
             <CheckIcon />
@@ -109,7 +110,7 @@ const MatchCreator = (props) => {
       </Box>
       <Divider />
     </div>
-  )
-}
+  );
+};
 
-export default MatchCreator
+export default MatchCreator;
