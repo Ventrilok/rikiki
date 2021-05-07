@@ -16,7 +16,7 @@ export const bid = {
   onEnd: (G, ctx) => {
     G.nextPlayer = G.nextBidder;
     G.nextBidder = (G.nextBidder + 1) % ctx.numPlayers;
-    G.lastPlayedCards = [];
+
     for (let i = 0; i < ctx.numPlayers; i++) {
       G.players[i].ready = false;
     }

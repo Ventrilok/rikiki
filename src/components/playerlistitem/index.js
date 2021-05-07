@@ -61,19 +61,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PlayerListItem = ({ active, tricks, bid, score, playerName, hold }) => {
+const PlayerListItem = ({ active, tricks, bid, score, playerName, absoluteZero, hold }) => {
   const info = `${bid == null ? '-' : tricks} pli${+(tricks > 1) ? 's' : ''} • enchère: ${
     bid == null ? '-' : bid
   }`;
+  const playerNameEnhanced = `${playerName} ${absoluteZero ? '🥶' : ''}`;
   const styles = useStyles({ active });
 
   return (
     <Box px={1}>
       <ListItem className={styles.root}>
         <Avatar className={styles.avatar}>{score}</Avatar>
-
         <ListItemText
-          primary={playerName}
+          primary={playerNameEnhanced}
           secondary={info}
           primaryTypographyProps={{ noWrap: true }}
           secondaryTypographyProps={{ noWrap: true }}

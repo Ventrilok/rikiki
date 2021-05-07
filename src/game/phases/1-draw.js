@@ -12,6 +12,7 @@ export const draw = {
     return G;
   },
   onEnd: (G, ctx) => {
+    G.lastPlayedCards = [];
     for (let i = 0; i < ctx.numPlayers; i++) {
       G.players[i].ready = false;
       G.players[i].hold = false;
